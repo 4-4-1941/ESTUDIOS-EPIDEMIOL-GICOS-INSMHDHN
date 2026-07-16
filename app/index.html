@@ -1,1 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anales de Salud Mental</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="wrap">
+    <h1>Anales de Salud Mental</h1>
+    <p>Buscador de publicaciones y estudios epidemiológicos.</p>
 
+    <section class="filters">
+      <input id="q" placeholder="Buscar título, autor, región o tema">
+      <select id="region">
+        <option value="">Todas las regiones</option>
+      </select>
+      <select id="anio">
+        <option value="">Todos los años</option>
+      </select>
+    </section>
+
+    <section id="stats" class="stats"></section>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Región</th>
+          <th>Año</th>
+          <th>Volumen</th>
+          <th>Fuente</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+            </html>
