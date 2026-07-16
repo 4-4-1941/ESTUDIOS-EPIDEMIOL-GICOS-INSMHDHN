@@ -1,1 +1,7 @@
-
+{
+  "project": "insm-anales-salud-mental",
+  "author": "Tu Nombre",
+  "language": "es",
+  "source": "Anales de Salud Mental",
+  "mode": "catalogo"
+}
