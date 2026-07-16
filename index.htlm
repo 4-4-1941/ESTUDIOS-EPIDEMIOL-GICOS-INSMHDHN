@@ -3,91 +3,42 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Anales de Salud Mental</title>
+  <title>PRUEBA CAMBIO REAL</title>
   <style>
-    :root{
-      --bg:#f6f8fb; --card:#ffffff; --text:#1f2937; --muted:#6b7280;
-      --line:#dbe3ee; --accent:#0b66c3; --accent2:#0f8b6f;
-    }
-    *{box-sizing:border-box}
     body{
-      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:linear-gradient(180deg,#f8fbff 0%, #f6f8fb 100%); color:var(--text);
+      font-family:Arial,sans-serif;
+      background:#111;
+      color:#fff;
+      margin:0;
+      display:grid;
+      place-items:center;
+      min-height:100vh
     }
-    .wrap{max-width:980px;margin:0 auto;padding:28px 18px 40px}
-    .hero{
-      background:var(--card); border:1px solid var(--line); border-radius:18px;
-      padding:28px; box-shadow:0 10px 30px rgba(15,23,42,.05);
+    .card{
+      background:#fff;
+      color:#111;
+      padding:32px;
+      border-radius:18px;
+      max-width:720px;
+      width:calc(100% - 32px);
+      box-shadow:0 12px 30px rgba(0,0,0,.3)
     }
-    h1{margin:0 0 8px;font-size:2.1rem;line-height:1.1}
-    .sub{margin:0;color:var(--muted);font-size:1rem}
-    .grid{
-      display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:18px;
+    h1{margin-top:0;font-size:2rem}
+    .tag{
+      display:inline-block;
+      background:#ffcc00;
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:700
     }
-    .box{
-      background:#fff; border:1px solid var(--line); border-radius:16px; padding:18px;
-    }
-    .label{font-size:.82rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted)}
-    .value{margin-top:8px; font-size:1.05rem; font-weight:700}
-    .section{margin-top:18px; background:#fff; border:1px solid var(--line); border-radius:18px; padding:22px}
-    ul{margin:10px 0 0 18px; padding:0}
-    li{margin:8px 0}
-    a{color:var(--accent); text-decoration:none}
-    .btns{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
-    .btn{
-      display:inline-block; padding:11px 14px; border-radius:12px; border:1px solid var(--line);
-      background:#fff; color:var(--text); font-weight:600;
-    }
-    .btn.primary{background:var(--accent); border-color:var(--accent); color:#fff}
-    .note{color:var(--muted); font-size:.95rem; margin-top:10px}
-    @media (max-width:720px){ .grid{grid-template-columns:1fr} h1{font-size:1.7rem} }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <section class="hero">
-      <h1>Anales de Salud Mental</h1>
-      <p class="sub">Catálogo técnico de estudios, funciones de consulta y uso operativo desde GitHub Pages.</p>
-
-      <div class="grid">
-        <div class="box">
-          <div class="label">Título</div>
-          <div class="value">Repositorio operativo</div>
-        </div>
-        <div class="box">
-          <div class="label">Funciones</div>
-          <div class="value">Buscar, listar y cargar estudios</div>
-        </div>
-        <div class="box">
-          <div class="label">Uso</div>
-          <div class="value">Subir, publicar y consultar</div>
-        </div>
-      </div>
-
-      <div class="btns">
-        <a class="btn primary" href="#catalogo">Ver catálogo</a>
-        <a class="btn" href="#uso">Ver uso</a>
-      </div>
-    </section>
-
-    <section id="catalogo" class="section">
-      <h2>Qué hace este sitio</h2>
-      <ul>
-        <li>Centraliza estudios epidemiológicos públicos del INSM.</li>
-        <li>Permite ordenarlos por región, ciudad, año y tema.</li>
-        <li>Sirve como base para ampliar el catálogo de publicaciones.</li>
-      </ul>
-      <p class="note">La entrada del sitio debe estar en la ubicación publicada por Pages; si Pages está en root, este archivo raíz es la solución correcta [web:134][web:46].</p>
-    </section>
-
-    <section id="uso" class="section">
-      <h2>Uso operativo</h2>
-      <ul>
-        <li>Crea el archivo en la raíz del repositorio como <strong>index.html</strong>.</li>
-        <li>Pega este contenido y confirma el commit.</li>
-        <li>Espera a que GitHub Pages actualice la publicación.</li>
-      </ul>
-    </section>
+  <main class="card">
+    <span class="tag">CAMBIO VERIFICABLE</span>
+    <h1>Si ves esto, el archivo sí cambió</h1>
+    <p>Este contenido es distinto a una portada blanca.</p>
+    <p>PRUEBA-2026-07-16-1024</p>
   </main>
 </body>
 </html>
