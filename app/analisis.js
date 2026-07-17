@@ -63,3 +63,22 @@ listaRegiones.innerHTML =
       `<p>${region}: ${cantidad}</p>`
     )
     .join("");
+const conteoAnios = {};
+
+data.forEach(estudio => {
+  if (!estudio.anio_pub) return;
+
+  conteoAnios[estudio.anio_pub] =
+    (conteoAnios[estudio.anio_pub] || 0) + 1;
+});
+
+const listaAnios =
+  document.getElementById("lista-anios");
+
+listaAnios.innerHTML =
+  Object.entries(conteoAnios)
+    .sort((a,b) => Number(a[0]) - Number(b[0]))
+    .map(([anio,cantidad]) =>
+      `<p>${anio}: ${cantidad}</p>`
+    )
+    .join("");
