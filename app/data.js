@@ -29,4 +29,15 @@ tema:"Epidemiología",
 url:"https://openjournal.insm.gob.pe/revistasm/asm/article/view/18",
 fuente:"Anales de Salud Mental"
 }
+,
+{
+id:"REG-004",
+titulo:"Estudio Epidemiológico de Salud Mental en la Sierra Peruana ciudad de Ayacucho 2003",
+region:"Ayacucho",
+anio_pub:2004,
+volumen:"20",
+tema:"Epidemiología",
+url:"https://www.gob.pe",
+fuente:"GOB.PE / INSM"
+}  
 ];
