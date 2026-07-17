@@ -9,3 +9,19 @@ const maximo = Math.max(...anios);
 
 document.getElementById("cobertura").textContent =
 `${minimo} - ${maximo}`;
+const regiones = new Set(
+  data.map(d => d.region).filter(Boolean)
+);
+
+document.getElementById("regiones").textContent =
+regiones.size;
+
+const temas = new Set(
+  data.map(d => d.tema).filter(Boolean)
+);
+
+document.getElementById("temas").textContent =
+temas.size;
+
+document.getElementById("ultimo-anio").textContent =
+maximo;
