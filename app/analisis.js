@@ -33,6 +33,25 @@ data.forEach(estudio => {
   conteoRegiones[estudio.region] =
     (conteoRegiones[estudio.region] || 0) + 1;
 });
+const conteoTemas = {};
+
+data.forEach(estudio => {
+  if (!estudio.tema) return;
+
+  conteoTemas[estudio.tema] =
+    (conteoTemas[estudio.tema] || 0) + 1;
+});
+
+const listaTemas =
+  document.getElementById("lista-temas");
+
+listaTemas.innerHTML =
+  Object.entries(conteoTemas)
+    .sort((a,b) => b[1] - a[1])
+    .map(([tema,cantidad]) =>
+      `<p>${tema}: ${cantidad}</p>`
+    )
+    .join("");
 
 const listaRegiones =
   document.getElementById("lista-regiones");
