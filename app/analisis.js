@@ -25,3 +25,22 @@ temas.size;
 
 document.getElementById("ultimo-anio").textContent =
 maximo;
+const conteoRegiones = {};
+
+data.forEach(estudio => {
+  if (!estudio.region) return;
+
+  conteoRegiones[estudio.region] =
+    (conteoRegiones[estudio.region] || 0) + 1;
+});
+
+const listaRegiones =
+  document.getElementById("lista-regiones");
+
+listaRegiones.innerHTML =
+  Object.entries(conteoRegiones)
+    .sort((a,b) => b[1] - a[1])
+    .map(([region,cantidad]) =>
+      `<p>${region}: ${cantidad}</p>`
+    )
+    .join("");
