@@ -260,3 +260,47 @@ bloqueScore.innerHTML = `
 `;
 
 document.body.appendChild(bloqueScore);
+// TOP 3 REGIONES
+
+const topRegiones =
+Object.entries(conteoRegiones)
+.sort((a,b) => b[1] - a[1])
+.slice(0,3);
+
+const bloqueTopRegiones =
+document.createElement("div");
+
+bloqueTopRegiones.innerHTML = `
+<h2>🏆 Top Regiones</h2>
+<ol>
+${topRegiones
+.map(([region,cantidad]) =>
+`<li>${region} (${cantidad})</li>`)
+.join("")}
+</ol>
+`;
+
+document.body.appendChild(bloqueTopRegiones);
+
+
+// TOP 3 TEMAS
+
+const topTemas =
+Object.entries(conteoTemas)
+.sort((a,b) => b[1] - a[1])
+.slice(0,3);
+
+const bloqueTopTemas =
+document.createElement("div");
+
+bloqueTopTemas.innerHTML = `
+<h2>🏆 Top Temas</h2>
+<ol>
+${topTemas
+.map(([tema,cantidad]) =>
+`<li>${tema} (${cantidad})</li>`)
+.join("")}
+</ol>
+`;
+
+document.body.appendChild(bloqueTopTemas);
