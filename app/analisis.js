@@ -513,3 +513,74 @@ bloqueExpansion.innerHTML = `
 `;
 
 document.body.appendChild(bloqueExpansion);
+// ======================================
+// SEMÁFORO EPIDEMIOLÓGICO SIP
+// ======================================
+
+let colorEstado = "🔴";
+let estadoSistema = "Débil";
+
+if(totalEstudios >= 25){
+colorEstado = "🟡";
+estadoSistema = "Intermedio";
+}
+
+if(totalEstudios >= 50){
+colorEstado = "🟢";
+estadoSistema = "Fuerte";
+}
+
+const bloqueSemaforo =
+document.createElement("div");
+
+bloqueSemaforo.innerHTML = `
+<h2>${colorEstado} Estado General SIP</h2>
+
+<p><b>Nivel:</b> ${estadoSistema}</p>
+
+<p><b>Estudios:</b> ${totalEstudios}</p>
+
+<p><b>Regiones:</b> ${regiones.size}</p>
+
+<p><b>Temas:</b> ${temas.size}</p>
+`;
+
+document.body.appendChild(bloqueSemaforo);
+
+
+// ======================================
+// META SIGUIENTE
+// ======================================
+
+const faltantes25 =
+Math.max(0,25-totalEstudios);
+
+const bloqueMeta =
+document.createElement("div");
+
+bloqueMeta.innerHTML = `
+<h2>🎯 Meta SIP</h2>
+
+<p>Faltan ${faltantes25} estudios para alcanzar el Nivel Intermedio.</p>
+`;
+
+document.body.appendChild(bloqueMeta);
+
+
+// ======================================
+// PROGRESO HACIA 50 ESTUDIOS
+// ======================================
+
+const progreso50 =
+((totalEstudios/50)*100).toFixed(1);
+
+const bloqueProgreso =
+document.createElement("div");
+
+bloqueProgreso.innerHTML = `
+<h2>📈 Progreso Estratégico</h2>
+
+<p>${progreso50}% de la meta de 50 estudios.</p>
+`;
+
+document.body.appendChild(bloqueProgreso);
