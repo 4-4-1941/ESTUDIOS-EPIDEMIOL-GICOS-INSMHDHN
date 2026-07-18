@@ -82,3 +82,18 @@ listaAnios.innerHTML =
       `<p>${anio}: ${cantidad}</p>`
     )
     .join("");
+// PROMEDIO DE PUBLICACIONES POR AÑO
+
+const totalAnios = maximo - minimo + 1;
+
+const promedioAnual =
+(totalEstudios / totalAnios).toFixed(2);
+
+const nuevoBloque = document.createElement("div");
+
+nuevoBloque.innerHTML = `
+<h2>Promedio anual</h2>
+<p>${promedioAnual} estudios por año</p>
+`;
+
+document.body.appendChild(nuevoBloque);
