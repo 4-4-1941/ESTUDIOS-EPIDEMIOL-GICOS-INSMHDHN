@@ -97,3 +97,17 @@ nuevoBloque.innerHTML = `
 `;
 
 document.body.appendChild(nuevoBloque);
+// DENSIDAD REGIONAL
+
+const promedioRegion =
+(totalEstudios / regiones.size).toFixed(2);
+
+const bloqueRegion =
+document.createElement("div");
+
+bloqueRegion.innerHTML = `
+<h2>Promedio por región</h2>
+<p>${promedioRegion} estudios por región</p>
+`;
+
+document.body.appendChild(bloqueRegion);
