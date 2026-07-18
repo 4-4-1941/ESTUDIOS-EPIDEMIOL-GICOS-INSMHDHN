@@ -111,3 +111,27 @@ bloqueRegion.innerHTML = `
 `;
 
 document.body.appendChild(bloqueRegion);
+// AÑO MÁS PRODUCTIVO
+
+let anioTop = "";
+let cantidadTop = 0;
+
+Object.entries(conteoAnios)
+.forEach(([anio,cantidad]) => {
+
+if(cantidad > cantidadTop){
+anioTop = anio;
+cantidadTop = cantidad;
+}
+
+});
+
+const bloqueTop =
+document.createElement("div");
+
+bloqueTop.innerHTML = `
+<h2>Año con más publicaciones</h2>
+<p>${anioTop} (${cantidadTop} estudios)</p>
+`;
+
+document.body.appendChild(bloqueTop);
