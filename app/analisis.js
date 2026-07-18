@@ -202,3 +202,61 @@ bloqueCobertura.innerHTML = `
 `;
 
 document.body.appendChild(bloqueCobertura);
+// NIVEL DE MADUREZ DE LA BASE
+
+let nivel = "";
+
+if(totalEstudios < 25){
+nivel = "Inicial";
+}else if(totalEstudios < 50){
+nivel = "Intermedio";
+}else{
+nivel = "Avanzado";
+}
+
+const bloqueNivel =
+document.createElement("div");
+
+bloqueNivel.innerHTML = `
+<h2>Madurez de la Base</h2>
+<p>${nivel}</p>
+`;
+
+document.body.appendChild(bloqueNivel);
+
+
+// DENSIDAD TEMPORAL
+
+const densidadTemporal =
+(totalEstudios / (maximo - minimo + 1))
+.toFixed(2);
+
+const bloqueDensidad =
+document.createElement("div");
+
+bloqueDensidad.innerHTML = `
+<h2>Densidad Temporal</h2>
+<p>${densidadTemporal} estudios/año</p>
+`;
+
+document.body.appendChild(bloqueDensidad);
+
+
+// SCORE SIP RESEARCH
+
+const score =
+(
+(totalEstudios * 2) +
+(regiones.size * 5) +
+(temas.size * 10)
+);
+
+const bloqueScore =
+document.createElement("div");
+
+bloqueScore.innerHTML = `
+<h2>Score SIP Research</h2>
+<p>${score} puntos</p>
+`;
+
+document.body.appendChild(bloqueScore);
