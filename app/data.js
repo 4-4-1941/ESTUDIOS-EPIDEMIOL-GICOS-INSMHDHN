@@ -121,25 +121,5 @@ tema:"Marco Epidemiológico",
 url:"https://openjournal.insm.gob.pe/revistasm/asm/article/view/269",
 fuente:"Anales de Salud Mental"
   }  
-  ,
-{
-id:"REG-013",
-titulo:"...",
-region:"...",
-anio_pub:....,
-volumen:"...",
-tema:"Epidemiología",
-url:"...",
-fuente:"Anales de Salud Mental"
-},
-{
-id:"REG-014",
-titulo:"...",
-region:"...",
-anio_pub:....,
-volumen:"...",
-tema:"Epidemiología",
-url:"...",
-fuente:"Anales de Salud Mental"
-}
+  
 ];
