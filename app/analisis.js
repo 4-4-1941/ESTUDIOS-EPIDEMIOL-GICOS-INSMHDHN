@@ -344,3 +344,92 @@ document.body.appendChild(bloqueScoreEpi);
 
 
 //
+// ======================================
+// ISRN - INDICE SIP DE REPRESENTATIVIDAD NACIONAL
+// ======================================
+
+const puntajeEstudios =
+Math.min((totalEstudios / 50) * 25, 25);
+
+const puntajeRegiones =
+Math.min((regiones.size / 25) * 25, 25);
+
+const puntajeTemas =
+Math.min((temas.size / 10) * 25, 25);
+
+const puntajeTiempo =
+Math.min(((maximo - minimo) / 25) * 25, 25);
+
+const ISRN =
+(
+puntajeEstudios +
+puntajeRegiones +
+puntajeTemas +
+puntajeTiempo
+).toFixed(1);
+
+let categoriaISRN = "";
+
+if(ISRN < 25){
+categoriaISRN = "Baja";
+}
+else if(ISRN < 50){
+categoriaISRN = "Moderada";
+}
+else if(ISRN < 75){
+categoriaISRN = "Alta";
+}
+else{
+categoriaISRN = "Excelente";
+}
+
+const bloqueISRN =
+document.createElement("div");
+
+bloqueISRN.innerHTML = `
+<h2>🌎 ISRN</h2>
+<p>${ISRN}/100</p>
+<p>Nivel: ${categoriaISRN}</p>
+`;
+
+document.body.appendChild(bloqueISRN);
+
+
+// ======================================
+// EFICIENCIA DE COBERTURA
+// ======================================
+
+const eficiencia =
+(
+(regiones.size / totalEstudios) * 100
+).toFixed(1);
+
+const bloqueEficiencia =
+document.createElement("div");
+
+bloqueEficiencia.innerHTML = `
+<h2>📡 Eficiencia de Cobertura</h2>
+<p>${eficiencia}%</p>
+`;
+
+document.body.appendChild(bloqueEficiencia);
+
+
+// ======================================
+// DIVERSIDAD TEMÁTICA
+// ======================================
+
+const diversidadTematica =
+(
+(temas.size / totalEstudios) * 100
+).toFixed(1);
+
+const bloqueDiversidadTematica =
+document.createElement("div");
+
+bloqueDiversidadTematica.innerHTML = `
+<h2>🧠 Diversidad Temática</h2>
+<p>${diversidadTematica}%</p>
+`;
+
+document.body.appendChild(bloqueDiversidadTematica);
