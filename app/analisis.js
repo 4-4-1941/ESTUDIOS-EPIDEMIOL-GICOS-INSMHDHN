@@ -304,3 +304,21 @@ ${topTemas
 `;
 
 document.body.appendChild(bloqueTopTemas);
+// ÍNDICE DE CONCENTRACIÓN TEMÁTICA
+
+const maxTema =
+Math.max(...Object.values(conteoTemas));
+
+const indiceConcentracion =
+((maxTema / totalEstudios) * 100)
+.toFixed(1);
+
+const bloqueConcentracion =
+document.createElement("div");
+
+bloqueConcentracion.innerHTML = `
+<h2>Índice de Concentración Temática</h2>
+<p>${indiceConcentracion}%</p>
+`;
+
+document.body.appendChild(bloqueConcentracion);
