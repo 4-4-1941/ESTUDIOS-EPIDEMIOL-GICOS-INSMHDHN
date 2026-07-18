@@ -627,3 +627,81 @@ bloqueInterpretacion.innerHTML = `
 `;
 
 document.body.appendChild(bloqueInterpretacion);
+// ======================================
+// INFORME EPIDEMIOLÓGICO AUTOMÁTICO SIP
+// ======================================
+
+function generarInformeSIP(){
+
+const regionTop =
+Object.entries(conteoRegiones)
+.sort((a,b)=>b[1]-a[1])[0];
+
+const temaTop =
+Object.entries(conteoTemas)
+.sort((a,b)=>b[1]-a[1])[0];
+
+const anioTop =
+Object.entries(conteoAnios)
+.sort((a,b)=>b[1]-a[1])[0];
+
+return `
+La base SIP Research contiene ${totalEstudios} estudios documentados.
+
+La región con mayor producción científica es ${regionTop[0]}
+con ${regionTop[1]} estudios registrados.
+
+El tema predominante es ${temaTop[0]}
+con ${temaTop[1]} publicaciones.
+
+El año con mayor actividad científica fue ${anioTop[0]}
+con ${anioTop[1]} publicaciones.
+
+La cobertura temporal comprende desde ${minimo}
+hasta ${maximo}.
+
+Se identificaron ${regiones.size} regiones
+y ${temas.size} áreas temáticas.
+
+Estos resultados sugieren que la producción
+científica disponible presenta concentración
+en determinadas regiones y líneas de investigación,
+por lo que se recomienda ampliar la cobertura
+territorial y temática para mejorar la
+representatividad nacional.
+`;
+}
+
+const bloqueInforme =
+document.createElement("div");
+
+bloqueInforme.innerHTML = `
+<h2>📄 Informe Epidemiológico Automático</h2>
+<p style="line-height:1.7;">
+${generarInformeSIP()}
+</p>
+`;
+
+document.body.appendChild(bloqueInforme);
+
+
+// ======================================
+// RESUMEN EJECUTIVO SIP
+// ======================================
+
+const bloqueResumen =
+document.createElement("div");
+
+bloqueResumen.innerHTML = `
+<h2>📌 Resumen Ejecutivo</h2>
+
+<ul>
+<li>Total estudios: ${totalEstudios}</li>
+<li>Regiones: ${regiones.size}</li>
+<li>Temas: ${temas.size}</li>
+<li>Cobertura: ${minimo}-${maximo}</li>
+<li>Último año: ${maximo}</li>
+</ul>
+`;
+
+document.body.appendChild(bloqueResumen);
