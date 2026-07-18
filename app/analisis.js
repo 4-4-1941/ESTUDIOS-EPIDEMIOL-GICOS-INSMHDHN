@@ -433,3 +433,83 @@ bloqueDiversidadTematica.innerHTML = `
 `;
 
 document.body.appendChild(bloqueDiversidadTematica);
+// ======================================
+// COMPARADOR EPIDEMIOLÓGICO SIP
+// ======================================
+
+// Región con más estudios
+const regionMayor =
+Object.entries(conteoRegiones)
+.sort((a,b) => b[1] - a[1])[0];
+
+// Región con menos estudios
+const regionMenor =
+Object.entries(conteoRegiones)
+.sort((a,b) => a[1] - b[1])[0];
+
+const diferenciaRegional =
+regionMayor[1] - regionMenor[1];
+
+const razonRegional =
+(regionMayor[1] / regionMenor[1]).toFixed(2);
+
+const bloqueComparador =
+document.createElement("div");
+
+bloqueComparador.innerHTML = `
+<h2>⚖️ Comparador Regional SIP</h2>
+
+<p><b>Mayor producción:</b>
+${regionMayor[0]} (${regionMayor[1]} estudios)</p>
+
+<p><b>Menor producción:</b>
+${regionMenor[0]} (${regionMenor[1]} estudios)</p>
+
+<p><b>Diferencia absoluta:</b>
+${diferenciaRegional}</p>
+
+<p><b>Razón relativa:</b>
+${razonRegional}</p>
+`;
+
+document.body.appendChild(bloqueComparador);
+
+
+// ======================================
+// INDICE DE EQUILIBRIO REGIONAL
+// ======================================
+
+const equilibrioRegional =
+(
+(regionMenor[1] / regionMayor[1]) * 100
+).toFixed(1);
+
+const bloqueEquilibrio =
+document.createElement("div");
+
+bloqueEquilibrio.innerHTML = `
+<h2>🗺️ Equilibrio Regional</h2>
+<p>${equilibrioRegional}%</p>
+`;
+
+document.body.appendChild(bloqueEquilibrio);
+
+
+// ======================================
+// POTENCIAL DE EXPANSIÓN SIP
+// ======================================
+
+const potencialExpansion =
+(
+((25 - regiones.size) / 25) * 100
+).toFixed(1);
+
+const bloqueExpansion =
+document.createElement("div");
+
+bloqueExpansion.innerHTML = `
+<h2>🚀 Potencial de Expansión</h2>
+<p>${potencialExpansion}%</p>
+`;
+
+document.body.appendChild(bloqueExpansion);
