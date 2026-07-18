@@ -135,3 +135,70 @@ bloqueTop.innerHTML = `
 `;
 
 document.body.appendChild(bloqueTop);
+// REGIÓN MÁS ESTUDIADA
+
+let regionTop = "";
+let regionTopCantidad = 0;
+
+Object.entries(conteoRegiones)
+.forEach(([region,cantidad]) => {
+
+if(cantidad > regionTopCantidad){
+regionTop = region;
+regionTopCantidad = cantidad;
+}
+
+});
+
+const bloqueRegionTop =
+document.createElement("div");
+
+bloqueRegionTop.innerHTML = `
+<h2>Región más estudiada</h2>
+<p>${regionTop} (${regionTopCantidad} estudios)</p>
+`;
+
+document.body.appendChild(bloqueRegionTop);
+
+
+// TEMA MÁS ESTUDIADO
+
+let temaTop = "";
+let temaTopCantidad = 0;
+
+Object.entries(conteoTemas)
+.forEach(([tema,cantidad]) => {
+
+if(cantidad > temaTopCantidad){
+temaTop = tema;
+temaTopCantidad = cantidad;
+}
+
+});
+
+const bloqueTemaTop =
+document.createElement("div");
+
+bloqueTemaTop.innerHTML = `
+<h2>Tema predominante</h2>
+<p>${temaTop} (${temaTopCantidad} estudios)</p>
+`;
+
+document.body.appendChild(bloqueTemaTop);
+
+
+// ÍNDICE DE COBERTURA
+
+const indiceCobertura =
+((regiones.size / totalEstudios) * 100)
+.toFixed(1);
+
+const bloqueCobertura =
+document.createElement("div");
+
+bloqueCobertura.innerHTML = `
+<h2>Índice de cobertura regional</h2>
+<p>${indiceCobertura}%</p>
+`;
+
+document.body.appendChild(bloqueCobertura);
