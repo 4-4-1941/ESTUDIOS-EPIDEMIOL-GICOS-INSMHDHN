@@ -584,3 +584,46 @@ bloqueProgreso.innerHTML = `
 `;
 
 document.body.appendChild(bloqueProgreso);
+// ======================================
+// MOTOR DE INTERPRETACIÓN SIP v1
+// ======================================
+
+function interpretarBase(){
+
+let texto = "";
+
+texto += `La base documental contiene ${totalEstudios} estudios. `;
+
+texto += `Se identificaron ${regiones.size} regiones estudiadas y ${temas.size} temas principales. `;
+
+texto += `La cobertura temporal comprende desde ${minimo} hasta ${maximo}. `;
+
+if(totalEstudios < 25){
+
+texto += "La evidencia disponible aún es limitada y se recomienda ampliar la base documental.";
+
+}
+else if(totalEstudios < 50){
+
+texto += "La evidencia disponible es moderada y permite realizar comparaciones preliminares.";
+
+}
+else{
+
+texto += "La evidencia disponible es amplia y permite análisis comparativos robustos.";
+
+}
+
+return texto;
+
+}
+
+const bloqueInterpretacion =
+document.createElement("div");
+
+bloqueInterpretacion.innerHTML = `
+<h2>🧠 Interpretación Automática SIP</h2>
+<p>${interpretarBase()}</p>
+`;
+
+document.body.appendChild(bloqueInterpretacion);
