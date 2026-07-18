@@ -281,29 +281,6 @@ ${topRegiones
 `;
 
 document.body.appendChild(bloqueTopRegiones);
-
-
-// TOP 3 TEMAS
-
-const topTemas =
-Object.entries(conteoTemas)
-.sort((a,b) => b[1] - a[1])
-.slice(0,3);
-
-const bloqueTopTemas =
-document.createElement("div");
-
-bloqueTopTemas.innerHTML = `
-<h2>🏆 Top Temas</h2>
-<ol>
-${topTemas
-.map(([tema,cantidad]) =>
-`<li>${tema} (${cantidad})</li>`)
-.join("")}
-</ol>
-`;
-
-document.body.appendChild(bloqueTopTemas);
 // ÍNDICE DE CONCENTRACIÓN TEMÁTICA
 
 const maxTema =
@@ -322,3 +299,48 @@ bloqueConcentracion.innerHTML = `
 `;
 
 document.body.appendChild(bloqueConcentracion);
+
+
+// DIVERSIDAD REGIONAL
+
+const diversidadRegional =
+(regiones.size / totalEstudios * 100)
+.toFixed(1);
+
+const bloqueDiversidad =
+document.createElement("div");
+
+bloqueDiversidad.innerHTML = `
+<h2>Diversidad Regional</h2>
+<p>${diversidadRegional}%</p>
+`;
+
+document.body.appendChild(bloqueDiversidad);
+
+
+// SCORE EPIDEMIOLÓGICO SIP
+
+const coberturaTemporal =
+maximo - minimo;
+
+const scoreEpidemiologico =
+(totalEstudios * 2)
++
+(regiones.size * 5)
++
+(temas.size * 10)
++
+(coberturaTemporal);
+
+const bloqueScoreEpi =
+document.createElement("div");
+
+bloqueScoreEpi.innerHTML = `
+<h2>Score Epidemiológico SIP</h2>
+<p>${scoreEpidemiologico}</p>
+`;
+
+document.body.appendChild(bloqueScoreEpi);
+
+
+//
