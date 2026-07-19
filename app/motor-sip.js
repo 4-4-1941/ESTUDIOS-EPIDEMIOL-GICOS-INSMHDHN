@@ -75,3 +75,58 @@ document.body.appendChild(bloque);
 };
 
 MotorSIP.analizarPrimero();
+// =====================================
+// ANÁLISIS GLOBAL DE LA BASE SIP
+// =====================================
+
+function analisisGlobalSIP(){
+
+const temaDominante =
+Object.entries(conteoTemas)
+.sort((a,b)=>b[1]-a[1])[0];
+
+const regionDominante =
+Object.entries(conteoRegiones)
+.sort((a,b)=>b[1]-a[1])[0];
+
+const bloque =
+document.createElement("div");
+
+bloque.innerHTML = `
+<h2>🌎 Análisis Global SIP</h2>
+
+<p>
+La base contiene ${totalEstudios} estudios.
+</p>
+
+<p>
+La región con mayor producción es
+<b>${regionDominante[0]}</b>
+(${regionDominante[1]} estudios).
+</p>
+
+<p>
+La temática predominante es
+<b>${temaDominante[0]}</b>
+(${temaDominante[1]} publicaciones).
+</p>
+
+<p>
+La cobertura temporal se extiende desde
+${minimo} hasta ${maximo}.
+</p>
+
+<p>
+Interpretación:
+La producción científica disponible
+presenta una concentración temática
+en ${temaDominante[0]} y una concentración
+territorial en ${regionDominante[0]}.
+</p>
+`;
+
+document.body.appendChild(bloque);
+
+}
+
+analisisGlobalSIP();
