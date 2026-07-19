@@ -130,3 +130,64 @@ document.body.appendChild(bloque);
 }
 
 analisisGlobalSIP();
+// =====================================
+// DETECCIÓN DE PATRONES SIP
+// =====================================
+
+function detectarPatronesSIP(){
+
+const regionTop =
+Object.entries(conteoRegiones)
+.sort((a,b)=>b[1]-a[1])[0];
+
+const porcentajeTop =
+(
+(regionTop[1] / totalEstudios) * 100
+).toFixed(1);
+
+let interpretacion = "";
+
+if(porcentajeTop >= 50){
+
+interpretacion =
+"La evidencia científica se encuentra altamente concentrada en una región específica.";
+
+}
+else if(porcentajeTop >= 30){
+
+interpretacion =
+"La evidencia presenta una concentración moderada en determinadas regiones.";
+
+}
+else{
+
+interpretacion =
+"La evidencia muestra una distribución relativamente equilibrada.";
+}
+
+const bloque =
+document.createElement("div");
+
+bloque.innerHTML = `
+<h2>🔍 Detección de Patrones</h2>
+
+<p>
+Región predominante:
+<b>${regionTop[0]}</b>
+</p>
+
+<p>
+Participación:
+<b>${porcentajeTop}%</b>
+</p>
+
+<p>
+${interpretacion}
+</p>
+`;
+
+document.body.appendChild(bloque);
+
+}
+
+detectarPatronesSIP();
