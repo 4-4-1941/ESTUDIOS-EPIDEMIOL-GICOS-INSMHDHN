@@ -261,3 +261,46 @@ compararEstudios(
 "REG-001",
 "REG-002"
 );
+// =====================================
+// MATRIZ SIP
+// =====================================
+
+function matrizSIP(){
+
+const bloque = document.createElement("div");
+
+let html = `
+<h2>📊 Matriz General SIP</h2>
+
+<table border="1" cellpadding="6">
+
+<tr>
+<th>ID</th>
+<th>Región</th>
+<th>Año</th>
+<th>Tema</th>
+</tr>
+`;
+
+data.forEach(estudio=>{
+
+html += `
+<tr>
+<td>${estudio.id}</td>
+<td>${estudio.region}</td>
+<td>${estudio.anio_pub}</td>
+<td>${estudio.tema}</td>
+</tr>
+`;
+
+});
+
+html += `</table>`;
+
+bloque.innerHTML = html;
+
+document.body.appendChild(bloque);
+
+}
+
+matrizSIP();
