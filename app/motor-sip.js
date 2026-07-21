@@ -191,3 +191,73 @@ document.body.appendChild(bloque);
 }
 
 detectarPatronesSIP();
+// =====================================
+// COMPARADOR SIP
+// =====================================
+
+function compararEstudios(idA,idB){
+
+const A = data.find(x=>x.id===idA);
+const B = data.find(x=>x.id===idB);
+
+if(!A || !B) return;
+
+const bloque = document.createElement("div");
+
+bloque.innerHTML = `
+<h2>⚖️ Comparación de Estudios</h2>
+
+<table border="1" cellpadding="8">
+<tr>
+<th>Variable</th>
+<th>${A.id}</th>
+<th>${B.id}</th>
+</tr>
+
+<tr>
+<td>Título</td>
+<td>${A.titulo}</td>
+<td>${B.titulo}</td>
+</tr>
+
+<tr>
+<td>Región</td>
+<td>${A.region}</td>
+<td>${B.region}</td>
+</tr>
+
+<tr>
+<td>Año</td>
+<td>${A.anio_pub}</td>
+<td>${B.anio_pub}</td>
+</tr>
+
+<tr>
+<td>Tema</td>
+<td>${A.tema}</td>
+<td>${B.tema}</td>
+</tr>
+
+</table>
+
+<p><b>Interpretación:</b></p>
+
+<p>
+Se compararon los estudios
+${A.id} y ${B.id}.
+Ambos pertenecen a la línea
+${A.tema}.
+Las diferencias observadas se
+relacionan principalmente con
+la región y el periodo de estudio.
+</p>
+`;
+
+document.body.appendChild(bloque);
+
+}
+
+compararEstudios(
+"REG-001",
+"REG-002"
+);
