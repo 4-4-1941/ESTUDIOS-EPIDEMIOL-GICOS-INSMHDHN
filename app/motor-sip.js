@@ -406,40 +406,6 @@ iniciarSIP();
 // COMPARADOR AVANZADO SIP
 // =====================================
 
-function iniciarComparadorSIP(){
-
-const bloque = document.createElement("div");
-
-bloque.innerHTML = `
-<h2>⚖️ Comparador Avanzado SIP</h2>
-
-<select id="estudioA">
-${data.map(x =>
-`<option value="${x.id}">
-${x.id}
-</option>`
-).join("")}
-</select>
-
-<select id="estudioB">
-${data.map(x =>
-`<option value="${x.id}">
-${x.id}
-</option>`
-).join("")}
-</select>
-
-<button onclick="compararSeleccionSIP()">
-Comparar
-</button>
-
-<div id="resultado-comparador"></div>
-`;
-
-document.body.appendChild(bloque);
-
-}
-
 function compararSeleccionSIP(){
 
 const idA =
@@ -455,6 +421,12 @@ const B =
 data.find(x => x.id === idB);
 
 if(!A || !B) return;
+
+const score =
+scoreComparabilidad(A,B);
+
+const nivel =
+nivelComparabilidad(score);
 
 document.getElementById(
 "resultado-comparador"
@@ -513,6 +485,16 @@ ${A.tema === B.tema
 ? "Comparten la misma línea temática."
 : "Abordan líneas temáticas diferentes."
 }
+</p>
+
+<h3>📈 Comparabilidad SIP</h3>
+
+<p>
+Score: <b>${score}/100</b>
+</p>
+
+<p>
+Nivel: <b>${nivel}</b>
 </p>
 
 `;
