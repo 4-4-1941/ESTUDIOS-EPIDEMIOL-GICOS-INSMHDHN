@@ -402,3 +402,121 @@ epidemiológicos.
 }
 
 iniciarSIP();
+// =====================================
+// COMPARADOR AVANZADO SIP
+// =====================================
+
+function iniciarComparadorSIP(){
+
+const bloque = document.createElement("div");
+
+bloque.innerHTML = `
+<h2>⚖️ Comparador Avanzado SIP</h2>
+
+<select id="estudioA">
+${data.map(x =>
+`<option value="${x.id}">
+${x.id}
+</option>`
+).join("")}
+</select>
+
+<select id="estudioB">
+${data.map(x =>
+`<option value="${x.id}">
+${x.id}
+</option>`
+).join("")}
+</select>
+
+<button onclick="compararSeleccionSIP()">
+Comparar
+</button>
+
+<div id="resultado-comparador"></div>
+`;
+
+document.body.appendChild(bloque);
+
+}
+
+function compararSeleccionSIP(){
+
+const idA =
+document.getElementById("estudioA").value;
+
+const idB =
+document.getElementById("estudioB").value;
+
+const A =
+data.find(x => x.id === idA);
+
+const B =
+data.find(x => x.id === idB);
+
+if(!A || !B) return;
+
+document.getElementById(
+"resultado-comparador"
+).innerHTML = `
+
+<table border="1" cellpadding="6">
+
+<tr>
+<th>Variable</th>
+<th>${A.id}</th>
+<th>${B.id}</th>
+</tr>
+
+<tr>
+<td>Región</td>
+<td>${A.region}</td>
+<td>${B.region}</td>
+</tr>
+
+<tr>
+<td>Año</td>
+<td>${A.anio_pub}</td>
+<td>${B.anio_pub}</td>
+</tr>
+
+<tr>
+<td>Tema</td>
+<td>${A.tema}</td>
+<td>${B.tema}</td>
+</tr>
+
+</table>
+
+<h3>🧠 Interpretación Comparativa</h3>
+
+<p>
+Se compararon los estudios
+${A.id} y ${B.id}.
+</p>
+
+<p>
+La diferencia temporal es de
+${Math.abs(A.anio_pub - B.anio_pub)}
+años.
+</p>
+
+<p>
+${A.region === B.region
+? "Ambos estudios pertenecen a la misma región."
+: "Los estudios corresponden a regiones diferentes."
+}
+</p>
+
+<p>
+${A.tema === B.tema
+? "Comparten la misma línea temática."
+: "Abordan líneas temáticas diferentes."
+}
+</p>
+
+`;
+
+}
+
+iniciarComparadorSIP();
