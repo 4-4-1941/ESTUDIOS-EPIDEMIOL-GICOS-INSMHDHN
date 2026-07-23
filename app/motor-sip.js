@@ -520,3 +520,50 @@ ${A.tema === B.tema
 }
 
 iniciarComparadorSIP();
+// =====================================
+// SCORE DE COMPARABILIDAD SIP
+// =====================================
+
+function scoreComparabilidad(A,B){
+
+let score = 0;
+
+if(A.tema === B.tema){
+score += 40;
+}
+
+if(A.region === B.region){
+score += 30;
+}
+
+const diferenciaAnios =
+Math.abs(A.anio_pub - B.anio_pub);
+
+if(diferenciaAnios <= 5){
+score += 30;
+}
+else if(diferenciaAnios <= 10){
+score += 20;
+}
+else if(diferenciaAnios <= 20){
+score += 10;
+}
+
+return score;
+
+}
+
+function nivelComparabilidad(score){
+
+if(score >= 80)
+return "Muy Alta";
+
+if(score >= 60)
+return "Alta";
+
+if(score >= 40)
+return "Moderada";
+
+return "Baja";
+
+}
