@@ -405,7 +405,39 @@ iniciarSIP();
 // =====================================
 // COMPARADOR AVANZADO SIP
 // =====================================
+function iniciarComparadorSIP(){
 
+const bloque = document.createElement("div");
+
+bloque.innerHTML = `
+<h2>⚖️ Comparador Avanzado SIP</h2>
+
+<select id="estudioA">
+${data.map(x =>
+`<option value="${x.id}">
+${x.id}
+</option>`
+).join("")}
+</select>
+
+<select id="estudioB">
+${data.map(x =>
+`<option value="${x.id}">
+${x.id}
+</option>`
+).join("")}
+</select>
+
+<button onclick="compararSeleccionSIP()">
+Comparar
+</button>
+
+<div id="resultado-comparador"></div>
+`;
+
+document.body.appendChild(bloque);
+
+      }
 function compararSeleccionSIP(){
 
 const idA =
