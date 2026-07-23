@@ -304,3 +304,101 @@ document.body.appendChild(bloque);
 }
 
 matrizSIP();
+// =====================================
+// FILTRO Y ANALISIS SIP
+// =====================================
+
+function iniciarSIP(){
+
+const bloque = document.createElement("div");
+
+bloque.innerHTML = `
+<h2>🔎 Explorador SIP</h2>
+
+<select id="sip-estudio">
+${data.map(x =>
+`<option value="${x.id}">
+${x.id} - ${x.titulo}
+</option>`
+).join("")}
+</select>
+
+<button onclick="analizarSeleccionSIP()">
+Analizar
+</button>
+
+<div id="resultado-sip"></div>
+`;
+
+document.body.appendChild(bloque);
+
+}
+
+function analizarSeleccionSIP(){
+
+const id =
+document.getElementById("sip-estudio").value;
+
+const estudio =
+data.find(x => x.id === id);
+
+if(!estudio) return;
+
+document.getElementById(
+"resultado-sip"
+).innerHTML = `
+
+<h3>📄 ${estudio.titulo}</h3>
+
+<table border="1" cellpadding="6">
+
+<tr>
+<td>ID</td>
+<td>${estudio.id}</td>
+</tr>
+
+<tr>
+<td>Región</td>
+<td>${estudio.region}</td>
+</tr>
+
+<tr>
+<td>Año</td>
+<td>${estudio.anio_pub}</td>
+</tr>
+
+<tr>
+<td>Tema</td>
+<td>${estudio.tema}</td>
+</tr>
+
+<tr>
+<td>Fuente</td>
+<td>${estudio.fuente}</td>
+</tr>
+
+</table>
+
+<p><b>Interpretación:</b></p>
+
+<p>
+El estudio pertenece a la región
+${estudio.region} y fue publicado
+en ${estudio.anio_pub}.
+Contribuye a la evidencia sobre
+${estudio.tema}.
+</p>
+
+<p><b>Aplicabilidad:</b></p>
+
+<p>
+Puede utilizarse para comparación
+regional, análisis temporal y
+construcción de indicadores
+epidemiológicos.
+</p>
+`;
+
+}
+
+iniciarSIP();
