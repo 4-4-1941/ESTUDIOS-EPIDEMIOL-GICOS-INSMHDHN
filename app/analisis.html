@@ -1,7 +1,15 @@
 <!doctype html>
 <html lang="es">
- <style>
-<script src="motor-sip.js"></script>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>SIP Research - Análisis Epidemiológico</title>
+
+<style>
+
 body{
 font-family:Arial,sans-serif;
 background:#f4f7fa;
@@ -34,11 +42,8 @@ font-weight:bold;
 margin-top:10px;
 }
 
- </style>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Análisis Epidemiológico</title>
+</style>
+
 </head>
 
 <body>
@@ -54,7 +59,7 @@ margin-top:10px;
 
 <div class="card">
 <h3>Cobertura</h3>
-<p id="cobertura">0</p>
+<p id="cobertura">Calculando...</p>
 </div>
 
 <div class="card">
@@ -73,21 +78,26 @@ margin-top:10px;
 </div>
 
 </div>
- <h2>Distribución por regiones</h2>
+
+<h2>Distribución por regiones</h2>
 <div id="lista-regiones"></div>
- <h2>Distribución por temas</h2>
+
+<h2>Distribución por temas</h2>
 <div id="lista-temas"></div>
- <h2>Publicaciones por año</h2>
+
+<h2>Publicaciones por año</h2>
 <div id="lista-anios"></div>
+
+<div style="padding:10px;background:#e9eef3;margin-top:30px;">
+<a href="../index.html">🏠 Inicio</a> |
+<a href="index.html">🔍 Buscador</a> |
+<a href="analisis.html">📊 Análisis</a> |
+<a href="../index.html">↩️ Volver a SIP Research</a>
+</div>
+
 <script src="data.js"></script>
 <script src="analisis.js"></script>
 <script src="motor-sip.js"></script>
 
 </body>
-<div style="padding:10px;background:#e9eef3;">
-<a href="../index.html">🏠 Inicio</a> |
-<a href="index.html">🔍 Buscador</a> |
-<a href="analisis.html">📊 Análisis</a> |
-<a href="../index.html">↩️ Volver a SIP Research</a>
- </div>
-</html>
+               </html>
