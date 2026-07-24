@@ -1,1 +1,103 @@
+<!doctype html>
+<html lang="es">
 
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>SIP Research - Análisis Epidemiológico</title>
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+background:#f4f7fa;
+margin:20px;
+}
+
+.dashboard{
+display:flex;
+flex-wrap:wrap;
+gap:15px;
+margin-bottom:25px;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 2px 6px rgba(0,0,0,.1);
+min-width:180px;
+}
+
+.card h3{
+margin:0;
+color:#0b3d5c;
+}
+
+.card p{
+font-size:1.4rem;
+font-weight:bold;
+margin-top:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>SIP Research - Análisis Epidemiológico</h1>
+
+<div class="dashboard">
+
+<div class="card">
+<h3>Estudios</h3>
+<p id="total-estudios">0</p>
+</div>
+
+<div class="card">
+<h3>Cobertura</h3>
+<p id="cobertura">Calculando...</p>
+</div>
+
+<div class="card">
+<h3>Regiones</h3>
+<p id="regiones">0</p>
+</div>
+
+<div class="card">
+<h3>Temas</h3>
+<p id="temas">0</p>
+</div>
+
+<div class="card">
+<h3>Último Año</h3>
+<p id="ultimo-anio">0</p>
+</div>
+
+</div>
+
+<h2>Distribución por regiones</h2>
+<div id="lista-regiones"></div>
+
+<h2>Distribución por temas</h2>
+<div id="lista-temas"></div>
+
+<h2>Publicaciones por año</h2>
+<div id="lista-anios"></div>
+
+<div style="padding:10px;background:#e9eef3;margin-top:30px;">
+<a href="../index.html">🏠 Inicio</a> |
+<a href="index.html">🔍 Buscador</a> |
+<a href="analisis.html">📊 Análisis</a> |
+<a href="../index.html">↩️ Volver a SIP Research</a>
+</div>
+
+<script src="data.js"></script>
+<script src="analisis.js"></script>
+<script src="motor-sip.js"></script>
+
+</body>
+  </html>
