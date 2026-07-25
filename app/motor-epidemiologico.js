@@ -1,7 +1,18 @@
 // =====================================
 // MOTOR EPIDEMIOLÓGICO SIP
 // =====================================
+console.log("MOTOR EPIDEMIOLÓGICO CARGADO");
 
+console.log({
+totalEstudios,
+regiones,
+temas,
+minimo,
+maximo,
+conteoRegiones,
+conteoTemas,
+conteoAnios
+});
 function crearBloque(titulo){
 
 const bloque =
