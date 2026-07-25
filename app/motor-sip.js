@@ -581,3 +581,74 @@ return "Moderada";
 return "Baja";
 
 }
+// =====================================
+// EPIDEMIOLOGÍA SIP
+// =====================================
+
+function epidemiologiaSIP(){
+
+const estudiosValidos =
+data.filter(x =>
+x.prevalencia !== undefined &&
+x.prevalencia !== null
+);
+
+if(estudiosValidos.length===0){
+return;
+}
+
+const mayorPrevalencia =
+estudiosValidos.sort(
+(a,b)=>b.prevalencia-a.prevalencia
+)[0];
+
+const bloque =
+document.createElement("div");
+
+bloque.innerHTML = `
+
+<h2>🦠 Epidemiología SIP</h2>
+
+<table border="1" cellpadding="6">
+
+<tr>
+<td>Mayor prevalencia</td>
+<td>${mayorPrevalencia.prevalencia}%</td>
+</tr>
+
+<tr>
+<td>Región</td>
+<td>${mayorPrevalencia.region}</td>
+</tr>
+
+<tr>
+<td>Tema</td>
+<td>${mayorPrevalencia.tema}</td>
+</tr>
+
+<tr>
+<td>Año del estudio</td>
+<td>${mayorPrevalencia.anio_estudio}</td>
+</tr>
+
+</table>
+
+<p>
+
+La mayor prevalencia registrada en la
+base corresponde a
+<b>${mayorPrevalencia.tema}</b>
+en
+<b>${mayorPrevalencia.region}</b>
+con
+<b>${mayorPrevalencia.prevalencia}%</b>.
+
+</p>
+
+`;
+
+document.body.appendChild(bloque);
+
+}
+
+epidemiologiaSIP();
