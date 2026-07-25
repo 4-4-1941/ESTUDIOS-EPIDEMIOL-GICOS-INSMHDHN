@@ -363,10 +363,13 @@ document.getElementById(
 </tr>
 
 <tr>
-<td>Año</td>
+<td>Año del estudio</td>
+<td>${estudio.anio_estudio}</td>
+</tr>
+<tr>
+<td>Año publicación</td>
 <td>${estudio.anio_pub}</td>
 </tr>
-
 <tr>
 <td>Tema</td>
 <td>${estudio.tema}</td>
