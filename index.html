@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIP Research</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f4f7fa;
+margin:0;
+padding:0;
+text-align:center;
+}
+
+.hero{
+padding:60px 20px;
+background:#0b3d5c;
+color:white;
+}
+
+.hero h1{
+font-size:2.2rem;
+margin-bottom:10px;
+}
+
+.hero p{
+max-width:700px;
+margin:auto;
+line-height:1.6;
+}
+
+.stats{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+padding:30px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 2px 8px rgba(0,0,0,.1);
+min-width:180px;
+}
+
+.card h2{
+margin:0;
+color:#0b3d5c;
+}
+
+.btn{
+display:inline-block;
+margin-top:20px;
+padding:15px 30px;
+background:#0b3d5c;
+color:white;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+}
+
+footer{
+padding:20px;
+color:#666;
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+<h1>SIP Research</h1>
+
+<p>
+Plataforma de Investigación en Salud Mental y Epidemiología.
+Repositorio especializado en estudios epidemiológicos,
+publicaciones científicas y análisis de salud mental del Perú.
+</p>
+
+<a class="btn" href="app/">
+Ingresar al Buscador
+</a>
+<br><br>
+
+<a class="btn" href="app/analisis.html">
+📊 Análisis Epidemiológico
+</a>
+</section>
+
+<section class="stats">
+
+<div class="card">
+<h2 id="stat-estudios">-</h2>
+<p>📚 Estudios</p>
+</div>
+
+<div class="card">
+<h2 id="stat-regiones">-</h2>
+<p>🗺️ Regiones</p>
+</div>
+
+<div class="card">
+<h2 id="stat-cobertura">-</h2>
+<p>📅 Cobertura</p>
+</div>
+
+<div class="card">
+<h2>1.0</h2>
+<p>🚀 SIP Research</p>
+</div>
+
+<div class="card">
+<h2>INSM</h2>
+<p>Fuente Principal</p>
+</div>
+
+<div class="card">
+<h2 id="stat-temas">-</h2>
+<p>🏷️ Temas</p>
+</div>
+
+</section>
+
+<div style="padding:10px;background:#e9eef3;">
+<a href="index.html">🏠 Inicio</a> |
+<a href="app/">🔍 Buscador</a> |
+<a href="app/analisis.html">📊 Análisis</a>
+</div>
+
+<footer>
+SIP Research • Salud Mental • Epidemiología • Investigación
+</footer>
+
+<script src="app/data.js"></script>
+<script>
+// Estas tarjetas ya NO están escritas a mano: se calculan desde
+// app/data.js para que nunca queden desactualizadas cuando agregues
+// o quites estudios.
+(function () {
+  if (typeof data === "undefined") return;
+
+  const anios = data.map(d => d.anio_pub).filter(Boolean);
+  const regiones = new Set(data.map(d => d.region).filter(Boolean));
+  const temas = new Set(data.map(d => d.tema).filter(Boolean));
+
+  document.getElementById("stat-estudios").textContent = data.length;
+  document.getElementById("stat-regiones").textContent = regiones.size;
+  document.getElementById("stat-temas").textContent = temas.size;
+  document.getElementById("stat-cobertura").textContent =
+    anios.length ? `${Math.min(...anios)}-${Math.max(...anios)}` : "-";
+})();
+</script>
+
+</body>
+</html>
