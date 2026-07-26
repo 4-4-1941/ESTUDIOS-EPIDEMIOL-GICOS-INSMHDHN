@@ -41,6 +41,8 @@ const data = [
   tema: "Epidemiología",
   url: "https://openjournal.insm.gob.pe/revistasm/asm/article/view/5",
   fuente: "Anales de Salud Mental",
+  prevalencia: 30.9,
+  prevalencia_definicion: "Prevalencia de vida de cualquier trastorno psiquiátrico en población adulta de Cusco: 30,9% (IC 27,8-34,3). En Huancayo la cifra fue 30,0% (IC 27,1-33,1); no se reporta un promedio ponderado único para ambas ciudades (fuente: tablas de resultados 'ADULTO - CUSCO' y 'ADULTO - HUANCAYO' del informe completo).",
   resumen_breve: "Estudio para conocer problemas regionales e indicadores de salud mental en ciudades andinas."
 },
 {
@@ -56,6 +58,8 @@ const data = [
   tema: "Epidemiología",
   url: "https://openjournal.insm.gob.pe/revistasm/asm/article/view/18",
   fuente: "Anales de Salud Mental",
+  prevalencia: 44.2,
+  prevalencia_definicion: "Prevalencia de vida de cualquier trastorno psiquiátrico en el total de los 8 hospitales regionales: 44,2% (IC 42,2-46,1); anual 18,9%, 6 meses 16,4%, actual 12,2%. Por hospital: Arequipa 66,1%, Huancavelica 53,7%, Abancay 50,1%, Tacna 47,3%, Tumbes 42,6%, Trujillo 34,7%, Pucallpa 32,4%, Iquitos 26,6% (fuente: tabla 'Trastornos clínicos' del informe completo).",
   resumen_breve: "Informe general del estudio en hospitales regionales; incluye tanto los hallazgos generales (mayor afectación en mujeres, suicidio, sueño, estresores psicosociales) como el análisis específico de prevalencia y factores asociados en la población adulta atendida."
 },
 {
@@ -103,6 +107,8 @@ const data = [
   tema: "Epidemiología",
   url: "https://openjournal.insm.gob.pe/revistasm/asm/article/view/1",
   fuente: "Anales de Salud Mental",
+  prevalencia: 37.3,
+  prevalencia_definicion: "Prevalencia de vida de cualquier trastorno psiquiátrico: 37,3% (prevalencia actual: 23,5%), en 2,077 adultos de 43 distritos de Lima y Callao. Episodio depresivo 18,2%, ansiedad generalizada 9,9%, fobia social 7,9%, estrés postraumático 6,0% (fuente: citado textualmente en el estudio de replicación 2012 [REG-005]; no se tuvo acceso directo al informe original de 2002, por lo que esta cifra debe tratarse como secundaria hasta verificar contra la fuente primaria).",
   resumen_breve: "Panorama general de la salud mental de la población de Lima Metropolitana y Callao; primer informe de la serie."
 },
 {
