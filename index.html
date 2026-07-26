@@ -1,134 +1,52 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SIP Research</title>
-
-<style>
-body{
-font-family:Arial,sans-serif;
-background:#f4f7fa;
-margin:0;
-padding:0;
-text-align:center;
-}
-
-.hero{
-padding:60px 20px;
-background:#0b3d5c;
-color:white;
-}
-
-.hero h1{
-font-size:2.2rem;
-margin-bottom:10px;
-}
-
-.hero p{
-max-width:700px;
-margin:auto;
-line-height:1.6;
-}
-
-.stats{
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
-padding:30px;
-}
-
-.card{
-background:white;
-padding:20px;
-border-radius:12px;
-box-shadow:0 2px 8px rgba(0,0,0,.1);
-min-width:180px;
-}
-
-.card h2{
-margin:0;
-color:#0b3d5c;
-}
-
-.btn{
-display:inline-block;
-margin-top:20px;
-padding:15px 30px;
-background:#0b3d5c;
-color:white;
-text-decoration:none;
-border-radius:8px;
-font-weight:bold;
-}
-
-footer{
-padding:20px;
-color:#666;
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anales de Salud Mental</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
+  <main class="wrap">
+    <p>
+      <a href="../index.html">↩️ Volver a la Página Principal</a>
+    </p>
+    <h1>Anales de Salud Mental</h1>
+    <p>Buscador de publicaciones y estudios epidemiológicos.</p>
 
-<section class="hero">
-<h1>SIP Research</h1>
+    <section class="filters">
+      <input id="q" placeholder="Buscar título, región, ciudad o tema">
+      <select id="region">
+        <option value="">Todas las regiones</option>
+      </select>
+      <select id="anio">
+        <option value="">Todos los años</option>
+      </select>
+    </section>
 
-<p>
-Plataforma de Investigación en Salud Mental y Epidemiología.
-Repositorio especializado en estudios epidemiológicos,
-publicaciones científicas y análisis de salud mental del Perú.
-</p>
+    <section id="stats" class="stats"></section>
 
-<a class="btn" href="app/">
-Ingresar al Buscador
-</a>
-<br><br>
+    <table>
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Región</th>
+          <th>Año</th>
+          <th>Volumen</th>
+          <th>Fuente</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
 
-<a class="btn" href="app/analisis.html">
-📊 Análisis Epidemiológico
-</a>  
-</section>
+  <div style="padding:10px;background:#e9eef3;">
+    <a href="../index.html">🏠 Inicio</a> |
+    <a href="index.html">🔍 Buscador</a> |
+    <a href="analisis.html">📊 Análisis</a>
+  </div>
 
-<section class="stats">
-
-<div class="card">
-<h2>12</h2>
-<p>📚 Estudios</p>
-</div>
-
-<div class="card">
-<h2>9</h2>
-<p>🗺️ Regiones</p>
-</div>
-
-<div class="card">
-<h2>2003-2024</h2>
-<p>📅 Cobertura</p>
-</div>
-<div class="card">
-<h2>1.0</h2>
-<p>🚀 SIP Research</p>
-</div>
-<div class="card">
-<h2>INSM</h2>
-<p>Fuente Principal</p>
-</div>
-<div class="card">
-<h2>4</h2>
-<p>🏷️ Temas</p>
-</div>
-</section>
-
-<footer>
-SIP Research • Salud Mental • Epidemiología • Investigación
-</footer>
-
+  <script src="data.js"></script>
+  <script src="app.js"></script>
 </body>
- <div style="padding:10px;background:#e9eef3;">
-<a href="index.html">🏠 Inicio</a> |
-<a href="app/">🔍 Buscador</a> |
-<a href="app/analisis.html">📊 Análisis</a>
- </div>
 </html>
