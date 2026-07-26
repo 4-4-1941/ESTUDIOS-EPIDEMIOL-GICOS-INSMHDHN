@@ -24,6 +24,8 @@ const data = [
   tema: "Epidemiología",
   url: "https://openjournal.insm.gob.pe/revistasm/asm/article/view/3",
   fuente: "Anales de Salud Mental",
+  prevalencia: 37.3,
+  prevalencia_definicion: "Prevalencia de vida de cualquier trastorno psiquiátrico (fuente: revisión INSM que compara sierra/selva/fronteras)",
   resumen_breve: "Primer estudio técnico científico gubernamental en la sierra; aborda violencia hacia la mujer, conducta suicida, consumo de sustancias, depresión, ansiedad, adolescente y adulto mayor."
 },
 {
@@ -45,7 +47,7 @@ const data = [
   id: "REG-003",
   titulo: "Estudio Epidemiológico de Salud Mental en Hospitales Regionales 2015",
   region: "Hospitales Regionales",
-  ciudad: "Varias ciudades",
+  ciudad: "Abancay/Arequipa/Huancavelica/Iquitos/Pucallpa/Tacna/Trujillo/Tumbes",
   anio_estudio: "2015",
   anio_pub: 2019,
   volumen: "35",
@@ -54,7 +56,7 @@ const data = [
   tema: "Epidemiología",
   url: "https://openjournal.insm.gob.pe/revistasm/asm/article/view/18",
   fuente: "Anales de Salud Mental",
-  resumen_breve: "Muestra mayor afectación en mujeres; incluye suicidio, sueño y estresores psicosociales."
+  resumen_breve: "Informe general del estudio en hospitales regionales; incluye tanto los hallazgos generales (mayor afectación en mujeres, suicidio, sueño, estresores psicosociales) como el análisis específico de prevalencia y factores asociados en la población adulta atendida."
 },
 {
   id: "REG-004",
@@ -84,6 +86,8 @@ const data = [
   tema: "Epidemiología",
   url: "https://openjournal.insm.gob.pe/revistasm/asm/article/view/7",
   fuente: "Anales de Salud Mental",
+  prevalencia: 26.1,
+  prevalencia_definicion: "Prevalencia de vida para cualquier trastorno mental (ICD-10); prevalencia a 12 meses fue 11.8% (fuente: resumen de resultados principales del artículo)",
   resumen_breve: "Réplica del estudio basal de Lima y Callao, diez años después de la encuesta original de 2002."
 },
 {
@@ -120,23 +124,14 @@ const data = [
 // (mismo título, región, año y URL; solo el volumen difería
 // por un error de tipeo: "20" en vez de "19"). Verificado
 // contra la fuente oficial (Anales de Salud Mental Vol. 19,
-// Núm. 1 y 2, 2003). Se deja el hueco en la numeración a
-// propósito para no romper referencias existentes a otros IDs.
-{
-  id: "REG-009a",
-  titulo: "Estudio Epidemiológico de Salud Mental en Hospitales Regionales 2015 (población adulta)",
-  region: "Hospitales Regionales",
-  ciudad: "Abancay/Arequipa/Huancavelica/Iquitos/Pucallpa/Tacna/Trujillo/Tumbes",
-  anio_estudio: "2015",
-  anio_pub: 2019,
-  volumen: "35",
-  numero: "1",
-  paginas: "1-257",
-  tema: "Epidemiología",
-  url: "https://openjournal.insm.gob.pe/revistasm/asm/article/view/18",
-  fuente: "Anales de Salud Mental",
-  resumen_breve: "Prevalencia, identificación y factores asociados en población adulta atendida en hospitales generales (mismo informe general que REG-003, análisis por subpoblación)."
-},
+// Núm. 1 y 2, 2003).
+//
+// REG-009a fue retirado y fusionado dentro de REG-003:
+// ambos registros describían el mismo informe general
+// (Hospitales Regionales 2015, Vol. 35), solo que analizaban
+// distintas subpoblaciones del mismo estudio. Se deja el hueco
+// en la numeración a propósito para no romper referencias
+// existentes a otros IDs.
 {
   id: "REG-010",
   titulo: "Confiabilidad y Validez de los Cuestionarios de los Estudios Epidemiológicos de Salud Mental de la Sierra Rural 2008 y Trapecio Andino 2010",
@@ -181,5 +176,37 @@ const data = [
   url: "https://openjournal.insm.gob.pe/revistasm/asm/article/view/269",
   fuente: "Anales de Salud Mental",
   resumen_breve: "Artículo de revisión sobre la investigación epidemiológica en psiquiatría y salud mental en el Perú."
+},
+{
+  id: "REG-013",
+  titulo: "Estudio Epidemiológico de Salud Mental en Arequipa, Moquegua y Puno 2018",
+  region: "Sur del Perú",
+  ciudad: "Arequipa/Moquegua/Puno",
+  anio_estudio: "2018",
+  anio_pub: 2022,
+  volumen: "38",
+  numero: "1",
+  paginas: "",
+  tema: "Epidemiología",
+  url: "https://openjournal.insm.gob.pe/revistasm/asm/article/view/24",
+  fuente: "Anales de Salud Mental",
+  prevalencia: 31.8,
+  prevalencia_definicion: "Promedio simple (no ponderado por población) de la prevalencia de vida de cualquier trastorno mental ICD-10 en las 3 ciudades: Arequipa 28.5%, Moquegua 31.6%, Puno 35.4% (fuente: resumen de resultados principales del artículo). Para un cálculo poblacional real, ponderar por N muestral de cada ciudad.",
+  resumen_breve: "Episodio depresivo (22,0%), estrés postraumático (4,3%) y problemas por uso de alcohol (6,8%) como trastornos más frecuentes en las tres ciudades."
+},
+{
+  id: "REG-014",
+  titulo: "Estudio Epidemiológico de Salud Mental en Hospitales Generales y Centros de Salud de Lima Metropolitana 2015",
+  region: "Lima Metropolitana y Callao",
+  ciudad: "Lima/Callao",
+  anio_estudio: "2015",
+  anio_pub: 2018,
+  volumen: "34",
+  numero: "1",
+  paginas: "1-172",
+  tema: "Epidemiología",
+  url: "https://openjournal.insm.gob.pe/revistasm/asm/article/view/15",
+  fuente: "Anales de Salud Mental",
+  resumen_breve: "Prevalencia, nivel de identificación y factores asociados de los principales problemas de salud mental en población adulta que busca atención en hospitales generales y centros de salud de Lima. (Cifra de prevalencia global pendiente de extraer del informe completo; no se encontró en los resúmenes disponibles públicamente)."
 }
 ];
