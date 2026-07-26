@@ -18,7 +18,9 @@ function render() {
   const yy = anio.value;
 
   const filtered = data.filter(d => {
-    const text = `${d.titulo} ${d.autores} ${d.region} ${d.tema} ${d.fuente}`.toLowerCase();
+    // Nota: "autores" no existe en la base actual, se retiró del
+    // texto de búsqueda para no ensuciar los resultados con "undefined".
+    const text = `${d.titulo} ${d.region} ${d.ciudad || ''} ${d.tema} ${d.fuente} ${d.resumen_breve || ''}`.toLowerCase();
     return (!qq || text.includes(qq)) &&
            (!rr || d.region === rr) &&
            (!yy || String(d.anio_pub) === yy);

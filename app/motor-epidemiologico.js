@@ -239,7 +239,7 @@ coberturaNacional();
 // DIVERSIDAD TEMÁTICA
 // =====================================
 
-function diversidadTematica(){
+function calcularDiversidadTematica(){
 
 const indice =
 (
@@ -256,7 +256,7 @@ bloque.innerHTML += `
 
 }
 
-diversidadTematica();
+calcularDiversidadTematica();
 
 // =====================================
 // ALERTAS SIP
