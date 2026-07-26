@@ -185,13 +185,13 @@ const data = [
   anio_estudio: "2018",
   anio_pub: 2022,
   volumen: "38",
-  numero: "1",
-  paginas: "",
+  numero: "2",
+  paginas: "1-459",
   tema: "Epidemiología",
   url: "https://openjournal.insm.gob.pe/revistasm/asm/article/view/24",
   fuente: "Anales de Salud Mental",
-  prevalencia: 31.8,
-  prevalencia_definicion: "Promedio simple (no ponderado por población) de la prevalencia de vida de cualquier trastorno mental ICD-10 en las 3 ciudades: Arequipa 28.5%, Moquegua 31.6%, Puno 35.4% (fuente: resumen de resultados principales del artículo). Para un cálculo poblacional real, ponderar por N muestral de cada ciudad.",
+  prevalencia: 29.5,
+  prevalencia_definicion: "Prevalencia de vida de cualquier trastorno mental ICD-10, ponderada por población adulta real de cada ciudad (Arequipa 28.5% sobre 655,221 hab.; Moquegua 31.6% sobre 78,564 hab.; Puno 35.4% sobre 80,749 hab.; N total ponderado = 814,534). Fuente: Tabla 2 y 3 del informe completo (no del resumen), y resultados principales.",
   resumen_breve: "Episodio depresivo (22,0%), estrés postraumático (4,3%) y problemas por uso de alcohol (6,8%) como trastornos más frecuentes en las tres ciudades."
 },
 {
