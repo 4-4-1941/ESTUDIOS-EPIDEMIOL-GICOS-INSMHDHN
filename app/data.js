@@ -191,7 +191,7 @@ const data = [
   anio_estudio: "2018",
   anio_pub: 2022,
   volumen: "38",
-  numero: "2",
+  numero: "1",
   paginas: "1-459",
   tema: "Epidemiología",
   url: "https://openjournal.insm.gob.pe/revistasm/asm/article/view/24",
