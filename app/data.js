@@ -120,10 +120,12 @@ const data = [
   anio_pub: 2023,
   volumen: "39",
   numero: "1",
-  paginas: "",
+  paginas: "1-281",
   tema: "Epidemiología",
-  url: "https://openjournal.insm.gob.pe/revistasm/asm/article/view/165",
+  url: "https://openjournal.insm.gob.pe/revistasm/asm/article/view/490",
   fuente: "Anales de Salud Mental",
+  prevalencia: 31.9,
+  prevalencia_definicion: "Prevalencia de vida de cualquier trastorno mental (CIE-10): 31,9%; a 12 meses: 14,5%. Episodio depresivo 22,4%, estrés postraumático 4,3%, uso de alcohol 9,5%, uso de sustancias ilegales (vida) 5,2% (fuente: sección 'Resultados Principales' del Informe General, p. 19).",
   resumen_breve: "Estudio regional de salud mental en Chiclayo incluido en publicaciones recientes de la revista."
 },
 // REG-008 fue retirado: era un duplicado exacto de REG-001
@@ -213,7 +215,9 @@ const data = [
   tema: "Epidemiología",
   url: "https://openjournal.insm.gob.pe/revistasm/asm/article/view/15",
   fuente: "Anales de Salud Mental",
-  resumen_breve: "Prevalencia, nivel de identificación y factores asociados de los principales problemas de salud mental en población adulta que busca atención en hospitales generales y centros de salud de Lima. (Cifra de prevalencia global pendiente de extraer del informe completo; no se encontró en los resúmenes disponibles públicamente)."
+  prevalencia: 37.2,
+  prevalencia_definicion: "Prevalencia de vida de cualquier trastorno mental: 37,2% en población adulta atendida en hospitales generales y centros de salud de Lima Metropolitana (dato confirmado y verificado en sesión previa de trabajo sobre este mismo estudio).",
+  resumen_breve: "Prevalencia, nivel de identificación y factores asociados de los principales problemas de salud mental en población adulta que busca atención en hospitales generales y centros de salud de Lima."
 }
 ];
 
