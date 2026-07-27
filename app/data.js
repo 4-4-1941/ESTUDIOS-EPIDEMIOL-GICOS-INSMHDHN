@@ -216,3 +216,27 @@ const data = [
   resumen_breve: "Prevalencia, nivel de identificación y factores asociados de los principales problemas de salud mental en población adulta que busca atención en hospitales generales y centros de salud de Lima. (Cifra de prevalencia global pendiente de extraer del informe completo; no se encontró en los resúmenes disponibles públicamente)."
 }
 ];
+
+// ============================================================
+// AÑO DE EJECUCIÓN vs. AÑO DE PUBLICACIÓN
+// ------------------------------------------------------------
+// "anio_pub" es cuándo salió impreso el artículo en Anales de
+// Salud Mental. "anio_estudio" es cuándo se hizo el trabajo de
+// campo (encuestas a la población). Para CUALQUIER cálculo
+// estadístico o de tendencia (conteo por año, año mínimo/máximo,
+// comparabilidad entre dos estudios, proyecciones), hay que usar
+// SIEMPRE el año de ejecución: la publicación puede demorar años
+// por trámites de imprenta, presupuesto estatal o revisión de
+// los investigadores, y ese desfase no tiene relación con cuándo
+// cambió realmente la salud mental de la población. Mezclar
+// ambos años distorsiona las cifras de tendencia temporal.
+//
+// anio_estudio es texto libre porque algunos registros abarcan
+// más de un año ("2008/2010", "2001-2024"). Esta función siempre
+// devuelve el PRIMER año de 4 dígitos que encuentra, que es el
+// año en que empezó la recolección de datos.
+function anioEjecucion(estudio){
+  if (!estudio || !estudio.anio_estudio) return null;
+  const match = String(estudio.anio_estudio).match(/\d{4}/);
+  return match ? parseInt(match[0], 10) : null;
+}

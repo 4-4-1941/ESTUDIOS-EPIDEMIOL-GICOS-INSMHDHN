@@ -7,7 +7,9 @@ const stats = document.getElementById('stats');
 // Los datos vendrán desde data.js
 
 const regions = [...new Set(data.map(d => d.region).filter(Boolean))].sort();
-const years = [...new Set(data.map(d => d.anio_pub).filter(Boolean))].sort((a,b) => b-a);
+// Se filtra por año de EJECUCIÓN (trabajo de campo), no de publicación:
+// es el dato con significado epidemiológico real.
+const years = [...new Set(data.map(d => anioEjecucion(d)).filter(Boolean))].sort((a,b) => b-a);
 
 regions.forEach(r => region.innerHTML += `<option value="${r}">${r}</option>`);
 years.forEach(y => anio.innerHTML += `<option value="${y}">${y}</option>`);
@@ -23,7 +25,7 @@ function render() {
     const text = `${d.titulo} ${d.region} ${d.ciudad || ''} ${d.tema} ${d.fuente} ${d.resumen_breve || ''}`.toLowerCase();
     return (!qq || text.includes(qq)) &&
            (!rr || d.region === rr) &&
-           (!yy || String(d.anio_pub) === yy);
+           (!yy || String(anioEjecucion(d)) === yy);
   });
 
   stats.textContent = `${filtered.length} resultados`;
@@ -31,7 +33,7 @@ function render() {
     <tr>
       <td><a href="${d.url}" target="_blank" rel="noopener">${d.titulo}</a></td>
       <td>${d.region}</td>
-      <td>${d.anio_pub}</td>
+      <td>${d.anio_estudio}</td>
       <td>${d.volumen}</td>
       <td>${d.fuente}</td>
     </tr>

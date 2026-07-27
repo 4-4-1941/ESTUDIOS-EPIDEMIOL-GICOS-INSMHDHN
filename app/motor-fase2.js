@@ -160,7 +160,7 @@ function mapaEsquematico(){
 }
 
 // ------------------------------------------------------------
-// 2) SERIE TEMPORAL (estudios publicados por año)
+// 2) SERIE TEMPORAL (estudios por año de EJECUCIÓN, no de publicación)
 // ------------------------------------------------------------
 function serieTemporal(){
   const anios = Object.keys(conteoAnios).map(Number).sort((a,b) => a-b);
@@ -186,7 +186,7 @@ function serieTemporal(){
     `;
   });
 
-  const bloque = crearBloqueFase2("📈 Serie Temporal de Publicaciones");
+  const bloque = crearBloqueFase2("📈 Serie Temporal de Estudios (por año de ejecución)");
   bloque.innerHTML += `
     <svg viewBox="0 0 ${ancho} ${alto}" width="100%" style="max-width:${ancho}px;background:#f9fafb;border-radius:8px;">
       ${barras}

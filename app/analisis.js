@@ -2,7 +2,10 @@ const totalEstudios = data.length;
 
 document.getElementById("total-estudios").textContent = totalEstudios;
 
-const anios = data.map(d => d.anio_pub).filter(Boolean);
+// Se usa el año de EJECUCIÓN del estudio (trabajo de campo), no el
+// año de publicación: la publicación puede demorar años por trámites
+// editoriales/presupuesto y no debe alterar la tendencia temporal real.
+const anios = data.map(d => anioEjecucion(d)).filter(Boolean);
 
 const minimo = Math.min(...anios);
 const maximo = Math.max(...anios);
@@ -66,10 +69,11 @@ listaRegiones.innerHTML =
 const conteoAnios = {};
 
 data.forEach(estudio => {
-  if (!estudio.anio_pub) return;
+  const anio = anioEjecucion(estudio);
+  if (!anio) return;
 
-  conteoAnios[estudio.anio_pub] =
-    (conteoAnios[estudio.anio_pub] || 0) + 1;
+  conteoAnios[anio] =
+    (conteoAnios[anio] || 0) + 1;
 });
 
 const listaAnios =
@@ -130,7 +134,7 @@ const bloqueTop =
 document.createElement("div");
 
 bloqueTop.innerHTML = `
-<h2>Año con más publicaciones</h2>
+<h2>Año con más estudios ejecutados</h2>
 <p>${anioTop} (${cantidadTop} estudios)</p>
 `;
 
@@ -654,8 +658,8 @@ con ${regionTop[1]} estudios registrados.
 El tema predominante es ${temaTop[0]}
 con ${temaTop[1]} publicaciones.
 
-El año con mayor actividad científica fue ${anioTop[0]}
-con ${anioTop[1]} publicaciones.
+El año con mayor actividad científica (ejecución de estudios en campo)
+fue ${anioTop[0]}, con ${anioTop[1]} estudio(s).
 
 La cobertura temporal comprende desde ${minimo}
 hasta ${maximo}.

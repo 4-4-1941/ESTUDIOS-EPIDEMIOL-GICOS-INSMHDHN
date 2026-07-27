@@ -12,7 +12,7 @@ return `
 
 📍 Región: ${estudio.region}
 
-📅 Año: ${estudio.anio_pub}
+📅 Año de ejecución: ${estudio.anio_estudio} (publicado en ${estudio.anio_pub})
 
 🏷️ Tema: ${estudio.tema}
 
@@ -227,7 +227,13 @@ bloque.innerHTML = `
 </tr>
 
 <tr>
-<td>Año</td>
+<td>Año de ejecución</td>
+<td>${A.anio_estudio}</td>
+<td>${B.anio_estudio}</td>
+</tr>
+
+<tr>
+<td>Año de publicación</td>
 <td>${A.anio_pub}</td>
 <td>${B.anio_pub}</td>
 </tr>
@@ -277,7 +283,7 @@ let html = `
 <tr>
 <th>ID</th>
 <th>Región</th>
-<th>Año</th>
+<th>Año ejecución</th>
 <th>Tema</th>
 </tr>
 `;
@@ -288,7 +294,7 @@ html += `
 <tr>
 <td>${estudio.id}</td>
 <td>${estudio.region}</td>
-<td>${estudio.anio_pub}</td>
+<td>${estudio.anio_estudio}</td>
 <td>${estudio.tema}</td>
 </tr>
 `;
@@ -386,8 +392,8 @@ document.getElementById(
 
 <p>
 El estudio pertenece a la región
-${estudio.region} y fue publicado
-en ${estudio.anio_pub}.
+${estudio.region}, se ejecutó en ${estudio.anio_estudio}
+y fue publicado en ${estudio.anio_pub}.
 Contribuye a la evidencia sobre
 ${estudio.tema}.
 </p>
@@ -482,7 +488,13 @@ document.getElementById(
 </tr>
 
 <tr>
-<td>Año</td>
+<td>Año de ejecución</td>
+<td>${A.anio_estudio}</td>
+<td>${B.anio_estudio}</td>
+</tr>
+
+<tr>
+<td>Año de publicación</td>
 <td>${A.anio_pub}</td>
 <td>${B.anio_pub}</td>
 </tr>
@@ -503,8 +515,8 @@ ${A.id} y ${B.id}.
 </p>
 
 <p>
-La diferencia temporal es de
-${Math.abs(A.anio_pub - B.anio_pub)}
+La diferencia temporal (entre años de ejecución del trabajo de campo) es de
+${Math.abs(anioEjecucion(A) - anioEjecucion(B))}
 años.
 </p>
 
@@ -553,8 +565,13 @@ if(A.region === B.region){
 score += 30;
 }
 
+// Se compara el año en que se recolectaron los datos (trabajo de
+// campo), no el año en que salió impreso el artículo: dos estudios
+// pueden haberse hecho el mismo año y publicarse con años de
+// diferencia por trámites editoriales, lo que no los hace menos
+// comparables entre sí.
 const diferenciaAnios =
-Math.abs(A.anio_pub - B.anio_pub);
+Math.abs(anioEjecucion(A) - anioEjecucion(B));
 
 if(diferenciaAnios <= 5){
 score += 30;
