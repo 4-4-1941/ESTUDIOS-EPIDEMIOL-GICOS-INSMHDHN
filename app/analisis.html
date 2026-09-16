@@ -2,98 +2,44 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SIP Research - Análisis Epidemiológico</title>
-
 <style>
-body{
-font-family:Arial,sans-serif;
-background:#f4f7fa;
-margin:20px;
-}
-
-.dashboard{
-display:flex;
-flex-wrap:wrap;
-gap:15px;
-margin-bottom:25px;
-}
-
-.card{
-background:white;
-padding:15px;
-border-radius:10px;
-box-shadow:0 2px 6px rgba(0,0,0,.1);
-min-width:180px;
-}
-
-.card h3{
-margin:0;
-color:#0b3d5c;
-}
-
-.card p{
-font-size:1.4rem;
-font-weight:bold;
-margin-top:10px;
-}
+*{box-sizing:border-box}body{font-family:Arial,sans-serif;background:#f4f7fa;color:#10212b;margin:0;padding:18px;line-height:1.45}main{max-width:1100px;margin:auto}h1,h2,h3{color:#0b4d69}.epi-panel,.card,.epi-resultado,.epi-comparacion,.epi-aviso{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.09);padding:18px}.epi-panel{margin:18px 0}.epi-query{display:flex;gap:10px}.epi-query input{flex:1;min-width:0;padding:13px;border:1px solid #bac5cc;border-radius:9px;font-size:16px}.epi-query button{border:0;border-radius:9px;padding:13px 22px;background:#0b4d69;color:#fff;font-weight:700;font-size:16px}.epi-respuestas{display:grid;gap:12px;margin-top:14px}.epi-valor{font-size:2rem;font-weight:800}.epi-fuente{font-size:.92rem}.epi-comparacion{border-left:5px solid #2d7a47}.epi-aviso{border-left:5px solid #b67813}.dashboard{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:20px 0}.card p{font-size:1.5rem;font-weight:800;margin:.4rem 0}.listas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.panel{background:#fff;border-radius:12px;padding:18px}.nav{margin-top:25px;padding:14px;background:#e9eef3;border-radius:10px}.nav a{margin-right:12px}@media(max-width:760px){body{padding:10px}.dashboard,.listas{grid-template-columns:1fr}.epi-query{display:block}.epi-query input,.epi-query button{width:100%;margin-bottom:9px}.card{min-height:120px}}
 </style>
 </head>
-
 <body>
-
+<main>
 <h1>SIP Research - Análisis Epidemiológico</h1>
+<section class="epi-panel">
+<h2>Consulta epidemiológica</h2>
+<p>Consulta indicadores con cifras verificadas. Ej.: “prevalencia de trastornos mentales en Ayacucho y Chiclayo”.</p>
+<div class="epi-query"><input id="epi-consulta" type="search" autocomplete="off" placeholder="Ej.: prevalencia en Ayacucho y Chiclayo"><button id="epi-buscar" type="button">Consultar</button></div>
+<div id="epi-respuesta" class="epi-respuestas" aria-live="polite"></div>
+</section>
+<section class="dashboard">
+<div class="card"><h3>Estudios</h3><p id="total-estudios">0</p></div>
+<div class="card"><h3>Cobertura</h3><p id="cobertura">Calculando...</p></div>
+<div class="card"><h3>Regiones</h3><p id="regiones">0</p></div>
+<div class="card"><h3>Temas</h3><p id="temas">0</p></div>
+<div class="card"><h3>Último año</h3><p id="ultimo-anio">0</p></div>
+</section>
+<section class="listas">
+<div class="panel"><h2>Regiones</h2><div id="lista-regiones"></div></div>
+<div class="panel"><h2>Temas</h2><div id="lista-temas"></div></div>
+<div class="panel"><h2>Años de ejecución</h2><div id="lista-anios"></div></div>
+</section>
+<nav class="nav"><a href="../index.html">Inicio</a><a href="index.html">Buscador</a><a href="analisis.html">Análisis</a></nav>
+</main>
 
-<div class="dashboard">
-
-<div class="card">
-<h3>Estudios</h3>
-<p id="total-estudios">0</p>
-</div>
-
-<div class="card">
-<h3>Cobertura</h3>
-<p id="cobertura">Calculando...</p>
-</div>
-
-<div class="card">
-<h3>Regiones</h3>
-<p id="regiones">0</p>
-</div>
-
-<div class="card">
-<h3>Temas</h3>
-<p id="temas">0</p>
-</div>
-
-<div class="card">
-<h3>Último Año</h3>
-<p id="ultimo-anio">0</p>
-</div>
-
-</div>
-
-<h2>Distribución por regiones</h2>
-<div id="lista-regiones"></div>
-
-<h2>Distribución por temas</h2>
-<div id="lista-temas"></div>
-
-<h2>Estudios por año de ejecución</h2>
-<div id="lista-anios"></div>
-
-<div style="padding:10px;background:#e9eef3;margin-top:30px;">
-<a href="../index.html">🏠 Inicio</a> |
-<a href="index.html">🔍 Buscador</a> |
-<a href="analisis.html">📊 Análisis</a>
-</div>
-
-<script src="data.js"></script>
+<!-- Base maestra: el archivo raíz contiene REG-001…REG-017. -->
+<script src="../data.js"></script>
 <script src="analisis.js"></script>
 <script src="motor-sip.js"></script>
 <script src="motor-epidemiologico.js"></script>
 <script src="mapa-peru-departamentos.js"></script>
 <script src="motor-fase2.js"></script>
-
+<script src="indicadores-epidemiologicos.js"></script>
+<script src="core/consulta-epidemiologica.js"></script>
 </body>
 </html>
