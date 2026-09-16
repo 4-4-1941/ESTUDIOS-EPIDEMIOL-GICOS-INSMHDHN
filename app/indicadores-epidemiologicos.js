@@ -1,11 +1,3 @@
-"use strict";
-
-/*
-  Capa integrada.
-  1) No reemplaza data.js.
-  2) Genera un índice documental para TODOS los estudios cargados en window.data/const data.
-  3) Añade cifras estructuradas solamente cuando el registro maestro las documenta de forma explícita.
-*/
 (function () {
   const estudios = (typeof data !== "undefined" && Array.isArray(data)) ? data : [];
 
