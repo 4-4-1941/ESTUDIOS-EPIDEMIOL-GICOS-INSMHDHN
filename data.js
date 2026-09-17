@@ -295,3 +295,164 @@ function anioEjecucion(estudio){
   const match = String(estudio.anio_estudio).match(/\d{4}/);
   return match ? parseInt(match[0], 10) : null;
 }
+
+// ============================================================
+// CAPA DE CONSULTA
+// ------------------------------------------------------------
+// Funciones que leen la base "data" de arriba. No modifican
+// nada, solo devuelven resultados. Todas se apoyan en
+// "anioEjecucion" para cualquier cálculo temporal, nunca en
+// "anio_pub". Los estudios con prevalencia=null se excluyen
+// automáticamente de los promedios para no romper con NaN.
+// ============================================================
+
+function obtenerPorId(id){
+  return data.find(e => e.id === id) || null;
+}
+
+function todosLosAniosEjecucion(){
+  const set = new Set();
+  data.forEach(e => {
+    const a = anioEjecucion(e);
+    if (a !== null) set.add(a);
+  });
+  return [...set].sort((a,b) => a - b);
+}
+
+function valoresUnicos(campo){
+  const set = new Set();
+  data.forEach(e => { if (e[campo]) set.add(e[campo]); });
+  return [...set].sort();
+}
+
+function filtrarPorRegion(region){
+  const q = region.toLowerCase();
+  return data.filter(e => e.region.toLowerCase().includes(q));
+}
+
+function filtrarPorCiudad(ciudad){
+  const q = ciudad.toLowerCase();
+  return data.filter(e => e.ciudad.toLowerCase().includes(q));
+}
+
+function filtrarPorTema(tema){
+  const q = tema.toLowerCase();
+  return data.filter(e => e.tema.toLowerCase().includes(q));
+}
+
+function filtrarPorFuente(fuente){
+  const q = fuente.toLowerCase();
+  return data.filter(e => e.fuente.toLowerCase().includes(q));
+}
+
+function filtrarPorRangoAnios(desde, hasta){
+  return data.filter(e => {
+    const a = anioEjecucion(e);
+    return a !== null && a >= desde && a <= hasta;
+  });
+}
+
+function filtrarPorAnio(anio){
+  return filtrarPorRangoAnios(anio, anio);
+}
+
+function buscarPorTexto(texto){
+  const q = texto.toLowerCase();
+  return data.filter(e => {
+    const campos = [e.titulo, e.region, e.ciudad, e.tema,
+                    e.resumen_breve, e.prevalencia_definicion, e.fuente];
+    return campos.some(c => c && c.toLowerCase().includes(q));
+  });
+}
+
+function estudiosConPrevalencia(){
+  return data.filter(e => typeof e.prevalencia === "number");
+}
+
+function prevalenciaPromedio(subconjunto){
+  const conCifra = subconjunto.filter(e => typeof e.prevalencia === "number");
+  if (conCifra.length === 0) return null;
+  const suma = conCifra.reduce((acc, e) => acc + e.prevalencia, 0);
+  return suma / conCifra.length;
+}
+
+function resumenPrevalencia(subconjunto){
+  const conCifra = subconjunto.filter(e => typeof e.prevalencia === "number");
+  if (conCifra.length === 0){
+    return { n: 0, promedio: null, min: null, max: null };
+  }
+  const valores = conCifra.map(e => e.prevalencia);
+  return {
+    n: conCifra.length,
+    promedio: valores.reduce((a,b) => a+b, 0) / valores.length,
+    min: Math.min(...valores),
+    max: Math.max(...valores),
+    fuentes: conCifra.map(e => e.id)
+  };
+}
+
+function encontrarReplicas(){
+  const grupos = {};
+  data.forEach(e => {
+    if (!grupos[e.ciudad]) grupos[e.ciudad] = [];
+    grupos[e.ciudad].push(e);
+  });
+  return Object.entries(grupos)
+    .filter(([_, arr]) => arr.length >= 2)
+    .map(([ciudad, arr]) => ({
+      ciudad,
+      estudios: arr.slice().sort(
+        (a,b) => anioEjecucion(a) - anioEjecucion(b)
+      )
+    }));
+}
+
+function compararEstudios(idA, idB){
+  const a = obtenerPorId(idA);
+  const b = obtenerPorId(idB);
+  if (!a || !b) return null;
+  const anioA = anioEjecucion(a);
+  const anioB = anioEjecucion(b);
+  const pA = a.prevalencia;
+  const pB = b.prevalencia;
+  const comparable = typeof pA === "number" && typeof pB === "number";
+  return {
+    idA, idB,
+    anios: [anioA, anioB],
+    deltaAnios: anioB - anioA,
+    definicionA: a.prevalencia_definicion,
+    definicionB: b.prevalencia_definicion,
+    deltaPrevalencia: comparable ? (pB - pA) : null,
+    comparable
+  };
+}
+
+function conteoPor(campo){
+  const salida = {};
+  data.forEach(e => {
+    const k = e[campo] || "(sin dato)";
+    salida[k] = (salida[k] || 0) + 1;
+  });
+  return salida;
+}
+
+function conteoPorAnioEjecucion(){
+  const salida = {};
+  data.forEach(e => {
+    const a = anioEjecucion(e);
+    if (a !== null) salida[a] = (salida[a] || 0) + 1;
+  });
+  return salida;
+}
+
+function tendenciaPorCiudad(ciudad){
+  return filtrarPorCiudad(ciudad)
+    .map(e => ({
+      id: e.id,
+      anio: anioEjecucion(e),
+      anio_pub: e.anio_pub,
+      prevalencia: e.prevalencia,
+      definicion: e.prevalencia_definicion
+    }))
+    .sort((a,b) => a.anio - b.anio);
+}
