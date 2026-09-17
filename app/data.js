@@ -125,8 +125,8 @@ const data = [
   url: "https://openjournal.insm.gob.pe/revistasm/asm/article/view/490",
   fuente: "Anales de Salud Mental",
   prevalencia: 31.9,
-  prevalencia_definicion: "Prevalencia de vida de cualquier trastorno mental (CIE-10): 31,9%; a 12 meses: 14,5%. Episodio depresivo 22,4%, estrés postraumático 4,3%, uso de alcohol 9,5%, uso de sustancias ilegales (vida) 5,2% (fuente: sección 'Resultados Principales' del Informe General, p. 19).",
-  resumen_breve: "Estudio regional de salud mental en Chiclayo incluido en publicaciones recientes de la revista."
+  prevalencia_definicion: "Prevalencia de vida de cualquier trastorno mental (CIE-10): 31,9% en población adulta de Chiclayo. Prevalencia a doce meses: 14,5%. Los trastornos más frecuentes fueron episodio depresivo (22,4%), problemas relacionados con el uso de alcohol (9,5%) y trastorno de estrés postraumático (4,3%). Prevalencia de vida de uso de sustancias ilegales: 5,2% (marihuana 4,6%). Fuente: Informe General, Anales de Salud Mental Vol. XXXIX, Año 2023, Núm. 1, p. 19.",
+  resumen_breve: "Prevalencia, comorbilidad y factores asociados (pobreza, violencia de pareja, terrorismo, discriminación) de los principales trastornos mentales en población adulta y adolescente de Chiclayo."
 },
 // REG-008 fue retirado: era un duplicado exacto de REG-001
 // (mismo título, región, año y URL; solo el volumen difería
@@ -193,7 +193,7 @@ const data = [
   anio_estudio: "2018",
   anio_pub: 2022,
   volumen: "38",
-  numero: "2",
+  numero: "1",
   paginas: "1-459",
   tema: "Epidemiología",
   url: "https://openjournal.insm.gob.pe/revistasm/asm/article/view/24",
@@ -216,8 +216,59 @@ const data = [
   url: "https://openjournal.insm.gob.pe/revistasm/asm/article/view/15",
   fuente: "Anales de Salud Mental",
   prevalencia: 37.2,
-  prevalencia_definicion: "Prevalencia de vida de cualquier trastorno mental: 37,2% en población adulta atendida en hospitales generales y centros de salud de Lima Metropolitana (dato confirmado y verificado en sesión previa de trabajo sobre este mismo estudio).",
+  prevalencia_definicion: "Prevalencia de vida de cualquier trastorno mental: 37,2% en pacientes que acuden por problemas físicos a establecimientos de salud del MINSA de Lima Metropolitana y Callao. Prevalencia actual (al momento de la consulta): 8,0%. De este último grupo, solo ~1 de cada 10 casos fue identificado por el médico tratante. Fuente: Informe General, Anales de Salud Mental Vol. XXXIV, Año 2018, Núm. 1.",
   resumen_breve: "Prevalencia, nivel de identificación y factores asociados de los principales problemas de salud mental en población adulta que busca atención en hospitales generales y centros de salud de Lima."
+},
+{
+  id: "REG-015",
+  titulo: "Estudio Epidemiológico de Salud Mental en Ayacucho, Cajamarca y Huaraz 2017",
+  region: "Sierra Peruana",
+  ciudad: "Ayacucho/Cajamarca/Huaraz",
+  anio_estudio: "2017",
+  anio_pub: 2020,
+  volumen: "36",
+  numero: "1 y 2",
+  paginas: "1-449",
+  tema: "Epidemiología",
+  url: "https://openjournal.insm.gob.pe/revistasm/asm/article/view/19",
+  fuente: "Anales de Salud Mental",
+  prevalencia: null,
+  prevalencia_definicion: "No hay una cifra única ponderada: prevalencia de vida de cualquier trastorno mental (CIE-10) por ciudad: Ayacucho 39,7%, Cajamarca 27,6%, Huaraz 36,6%. Prevalencia a 12 meses: 15,9% / 7,9% / 14,2% respectivamente. Trastornos más frecuentes en conjunto: episodio depresivo (23,4%), estrés postraumático (9,7%), problemas por uso de alcohol (9,1%). Fuente: Resumen del Informe General.",
+  resumen_breve: "Réplica del estudio de 2003 en las mismas tres ciudades de la sierra, permitiendo comparación directa de tendencias (usar REG-001 como par para anioEjecucion())."
+},
+{
+  id: "REG-016",
+  titulo: "Estudio Epidemiológico de Salud Mental Comparativo Ciudad de Abancay 2010-2016 (Informe General del Adulto)",
+  region: "Sierra Peruana",
+  ciudad: "Abancay",
+  anio_estudio: "2010/2016",
+  anio_pub: 2019,
+  volumen: "35",
+  numero: "2",
+  paginas: "",
+  tema: "Epidemiología / Estudio comparativo",
+  url: "https://openjournal.insm.gob.pe/revistasm/asm/article/view/16",
+  fuente: "Anales de Salud Mental",
+  prevalencia: 27.5,
+  prevalencia_definicion: "Prevalencia de vida de cualquier trastorno mental (CIE-10) en Abancay: 27,5% en 2016 vs. 28,8% en 2010. Prevalencia a 12 meses: 14,6% (2016) vs. 13,5% (2010). Trastornos más frecuentes en 2016: uso de alcohol (5,5%), episodio depresivo (5,3%), episodio psicótico (1,4%). Fuente: Resumen del Informe General.",
+  resumen_breve: "Estudio de replicación (línea base 2010 vs. seguimiento 2016) tras el proyecto piloto de mejora de redes de atención en salud mental en Apurímac."
+},
+{
+  id: "REG-017",
+  titulo: "Informe General de la Violencia Contra las Mujeres Actualmente Unidas y Alguna Vez Unidas en Hospitales Generales y Centros de Salud de Lima Metropolitana 2015",
+  region: "Lima Metropolitana y Callao",
+  ciudad: "Lima/Callao",
+  anio_estudio: "2015",
+  anio_pub: 2021,
+  volumen: "37",
+  numero: "1",
+  paginas: "",
+  tema: "Violencia de género / Salud mental",
+  url: "https://www.gob.pe/institucion/insm/informes-publicaciones/tipos/155-investigacion",
+  fuente: "Anales de Salud Mental / GOB.PE",
+  prevalencia: null,
+  prevalencia_definicion: "No es prevalencia poblacional general, es un subanálisis: usa la MISMA encuesta base que REG-014 (n=5558 mujeres unidas del total de 10,885 personas). 39,2% de las mujeres sufrió alguna vez abuso/maltrato de pareja. En el subgrupo con maltrato SISTEMÁTICO (4,5% del total), la prevalencia de vida de cualquier trastorno mental sube a 66% (trastornos depresivos 60,7%, ansiedad 16,2%) — no confundir con el 37,2% general de REG-014.",
+  resumen_breve: "Sub-análisis de género del estudio REG-014, enfocado en mujeres unidas o alguna vez unidas: violencia de pareja y su asociación con peor salud mental, menor autoestima y menor calidad de vida."
 }
 ];
 
@@ -243,4 +294,4 @@ function anioEjecucion(estudio){
   if (!estudio || !estudio.anio_estudio) return null;
   const match = String(estudio.anio_estudio).match(/\d{4}/);
   return match ? parseInt(match[0], 10) : null;
-  }
+    }
