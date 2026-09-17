@@ -14,8 +14,17 @@ body{font-family:Arial,sans-serif;background:#f4f7fa;margin:20px}
 .epi-query button{padding:12px 20px;border:0;border-radius:8px;background:#0b4d69;color:#fff;font-weight:bold}
 .epi-respuestas{display:grid;gap:12px;margin-top:14px}.epi-resultado,.epi-comparacion,.epi-aviso{background:#fff;padding:14px;border-radius:8px}
 .epi-valor{font-size:2rem;font-weight:bold}.epi-comparacion{border-left:4px solid #2d7a47}.epi-aviso{border-left:4px solid #b67813}
+.calculadoras{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.calculadora{border:1px solid #d9e1e7;border-radius:10px;padding:15px}
+.calculadora h3{margin-top:0;color:#0b3d5c}.calculadora label{display:block;margin:10px 0 5px;font-weight:bold}
+.calculadora input,.calculadora select{box-sizing:border-box;width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font-size:16px}
+.calculadora button{margin-top:14px;padding:11px 18px;border:0;border-radius:8px;background:#0b4d69;color:#fff;font-weight:bold}
+.tabla-2x2{width:100%;border-collapse:collapse}.tabla-2x2 th,.tabla-2x2 td{padding:7px;border:1px solid #d9e1e7;text-align:center}
+.tabla-2x2 input{min-width:0}.resultado-calculo{margin:14px 0 0;padding:10px;background:#eef5f8;border-radius:8px;min-height:44px}
+.resultado-calculo strong{display:block;font-size:1.25rem}.resultado-calculo.error{background:#fff0f0;color:#8b1a1a}
 .nav{padding:10px;background:#e9eef3;margin:0 0 20px}
-@media(max-width:700px){body{margin:10px}.epi-query{display:block}.epi-query input,.epi-query button{width:100%;margin-bottom:8px}.dashboard{display:block}.card{margin-bottom:12px}}
+@media(max-width:900px){.calculadoras{grid-template-columns:1fr}}
+@media(max-width:700px){body{margin:10px}.epi-query{display:block}.epi-query input,.epi-query button{box-sizing:border-box;width:100%;margin-bottom:8px}.dashboard{display:block}.card{margin-bottom:12px}}
 </style>
 </head>
 <body>
@@ -37,6 +46,50 @@ body{font-family:Arial,sans-serif;background:#f4f7fa;margin:20px}
 <button id="epi-buscar" type="button">Consultar</button>
 </div>
 <div id="epi-respuesta" class="epi-respuestas" aria-live="polite"></div>
+</section>
+
+<section class="epi-panel" aria-labelledby="titulo-calculadora">
+<h2 id="titulo-calculadora">Calculadora epidemiológica</h2>
+<p>Calcula proporciones, medidas de asociación y tasas con validación de los datos ingresados.</p>
+
+<div class="calculadoras">
+<form id="form-frecuencia" class="calculadora">
+<h3>Frecuencia porcentual</h3>
+<label for="frecuencia-n">Eventos (n)</label>
+<input id="frecuencia-n" name="n" type="number" min="0" step="1" inputmode="numeric" required>
+<label for="frecuencia-N">Población evaluada (N)</label>
+<input id="frecuencia-N" name="N" type="number" min="1" step="1" inputmode="numeric" required>
+<button type="submit">Calcular frecuencia</button>
+<div id="resultado-frecuencia" class="resultado-calculo" aria-live="polite">Ingrese los datos.</div>
+</form>
+
+<form id="form-asociacion" class="calculadora">
+<h3>Tabla epidemiológica 2 × 2</h3>
+<table class="tabla-2x2">
+<thead><tr><th scope="col">Grupo</th><th scope="col">Evento +</th><th scope="col">Evento −</th></tr></thead>
+<tbody>
+<tr><th scope="row">Expuestos</th><td><label for="tabla-a" hidden>a</label><input id="tabla-a" name="a" type="number" min="0" step="1" inputmode="numeric" placeholder="a" required></td><td><label for="tabla-b" hidden>b</label><input id="tabla-b" name="b" type="number" min="0" step="1" inputmode="numeric" placeholder="b" required></td></tr>
+<tr><th scope="row">No expuestos</th><td><label for="tabla-c" hidden>c</label><input id="tabla-c" name="c" type="number" min="0" step="1" inputmode="numeric" placeholder="c" required></td><td><label for="tabla-d" hidden>d</label><input id="tabla-d" name="d" type="number" min="0" step="1" inputmode="numeric" placeholder="d" required></td></tr>
+</tbody>
+</table>
+<button type="submit">Calcular RP y OR</button>
+<div id="resultado-asociacion" class="resultado-calculo" aria-live="polite">Ingrese los cuatro conteos.</div>
+</form>
+
+<form id="form-tasa" class="calculadora">
+<h3>Tasa epidemiológica</h3>
+<label for="tasa-casos">Número de casos</label>
+<input id="tasa-casos" name="casos" type="number" min="0" step="1" inputmode="numeric" required>
+<label for="tasa-denominador">Denominador</label>
+<input id="tasa-denominador" name="denominador" type="number" min="0.000001" step="any" inputmode="decimal" required>
+<label for="tasa-factor">Expresar por</label>
+<select id="tasa-factor" name="factor">
+<option value="100">100</option><option value="1000" selected>1 000</option><option value="10000">10 000</option><option value="100000">100 000</option>
+</select>
+<button type="submit">Calcular tasa</button>
+<div id="resultado-tasa" class="resultado-calculo" aria-live="polite">Ingrese los datos.</div>
+</form>
+</div>
 </section>
 
 <div class="dashboard">
@@ -62,6 +115,7 @@ body{font-family:Arial,sans-serif;background:#f4f7fa;margin:20px}
 <script src="data.js"></script>
 <script src="analisis.js"></script>
 <script src="motor-sip.js"></script>
+<script src="epidemiologia-formulas.js"></script>
 <script src="motor-epidemiologico.js"></script>
 <script src="mapa-peru-departamentos.js"></script>
 <script src="motor-fase2.js"></script>
