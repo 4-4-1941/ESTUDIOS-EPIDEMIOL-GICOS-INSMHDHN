@@ -465,5 +465,5 @@ function obtenerAnios(){
   return [...new Set(data.map(d => anioEjecucion(d)).filter(Boolean))].sort((a,b) => b-a);
 }
 window.data = data;
-window.anioEjecucion = anioEjecucion;
-      
+window.anioEjecucion = anioEjecucion;      
+window.data = data;
