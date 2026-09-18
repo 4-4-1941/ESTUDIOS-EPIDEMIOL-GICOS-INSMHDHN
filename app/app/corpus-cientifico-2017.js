@@ -125,4 +125,4 @@ window.SIP_CORPUS_CIENTIFICO=window.SIP_CORPUS_CIENTIFICO||{};
 window.SIP_CORPUS_CIENTIFICO[E]={metodologia,instrumentos,resultados:rows};
 window.INDICADORES_EPIDEMIOLOGICOS=[...(window.INDICADORES_EPIDEMIOLOGICOS||[]).filter(x=>x.estudio_id!==E),...rows,...historical];
 })();
-
+window.CORPUS_CIENTIFICO_2017 = rows;
