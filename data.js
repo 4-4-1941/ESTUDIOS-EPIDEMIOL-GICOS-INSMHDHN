@@ -450,6 +450,9 @@ function tendenciaPorCiudad(ciudad){
     .map(e => ({
       id: e.id,
       anio: anioEjecucion(e),
+      window.data = data;
+window.anioEjecucion = anioEjecucion;
+  
       anio_pub: e.anio_pub,
       prevalencia: e.prevalencia,
       definicion: e.prevalencia_definicion
