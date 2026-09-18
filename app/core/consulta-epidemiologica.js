@@ -1,8 +1,3 @@
-// ============================================
-// NÚCLEO - CONSULTANTE EPIDEMIOLÓGICO v2.2
-// Ruta: core/consulta-epidemiologica.js
-// ============================================
-
 (function() {
   "use strict";
 
@@ -12,20 +7,28 @@
 
     if (!inputConsulta) return;
 
-    const baseDatos = window.ESTUDIOS_EPIDEMIOLOGICOS || window.datos || [];
+    const baseDatos = [
+      ...(window.ESTUDIOS_EPIDEMIOLOGICOS || []),
+      ...(window.CORPUS_CIENTIFICO_2017 || [])
+    ];
 
     if (typeof window.MotorNarrativo === "undefined") {
-      console.error("Error: MotorNarrativo no está cargado. Revisa el orden de tus scripts en el HTML.");
+      if (contenedorRespuesta) {
+        contenedorRespuesta.innerHTML = `<div style="color:#b91c1c; font-size:13px; padding:10px; background:#fee2e2; border-radius:6px;">Error de sistema: motor-narrativo.js no se encuentra disponible.</div>`;
+      }
       return;
     }
 
     const motor = new window.MotorNarrativo(baseDatos);
 
-    inputConsulta.addEventListener("input", (e) => {
-      const texto = e.target.value.trim();
-      if (texto.length < 3) return;
+    const ejecutarConsulta = () => {
+      const texto = inputConsulta.value.trim();
+      if (texto.length < 2) {
+        if (contenedorRespuesta) contenedorRespuesta.innerHTML = "";
+        return;
+      }
 
-      let region = "Lima";
+      let region = "";
       let trastorno = texto;
 
       if (texto.toLowerCase().includes(" en ")) {
@@ -40,21 +43,26 @@
       if (contenedorRespuesta) {
         let htmlDetalles = "";
         if (detalles.length > 0) {
-          htmlDetalles = `<details style="margin-top:10px; cursor:pointer;"><summary>📚 Estudios encontrados (${detalles.length})</summary><ul style="padding-left:15px; font-size:12px;">`;
+          htmlDetalles = `
+            <details style="margin-top:10px; cursor:pointer;" open>
+              <summary style="font-weight:600; color:#1d4ed8;">📚 Fuentes epidemiológicas identificadas (${detalles.length})</summary>
+              <ul style="padding-left:18px; margin-top:8px; font-size:13px;">
+          `;
           detalles.forEach(d => {
-            htmlDetalles += `<li><strong>${d.titulo}</strong> — ${d.region} (${d.anio}) · Prevalencia: ${d.prevalencia}%</li>`;
+            htmlDetalles += `<li style="margin-bottom:4px;"><strong>${d.titulo}</strong> — ${d.region} (${d.anio}) · Prevalencia: <strong>${d.prevalencia}%</strong></li>`;
           });
           htmlDetalles += `</ul></details>`;
         }
 
         contenedorRespuesta.innerHTML = `
-          <div style="padding: 12px; background: #f8f9fa; border-radius: 6px; border: 1px solid #ddd;">
-            <p style="margin: 0 0 8px 0; font-style: italic;">${narrativa}</p>
+          <div style="padding:14px; background:#f9fafb; border:1px solid #e5e7eb; border-radius:8px;">
+            <p style="margin:0 0 8px 0; font-size:14px; line-height:1.5;">${narrativa}</p>
             ${htmlDetalles}
           </div>
         `;
       }
-    });
-  });
+    };
 
+    inputConsulta.addEventListener("input", ejecutarConsulta);
+  });
 })();
