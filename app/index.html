@@ -1,49 +1,41 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Anales de Salud Mental</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consultante Epidemiológico - INSM HD-HN</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f4f7f6; margin: 0; padding: 20px; color: #333; }
+    .container { max-width: 750px; margin: 0 auto; background: #fff; padding: 24px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e1e8ed; }
+    h1 { font-size: 22px; color: #0056b3; margin-top: 0; }
+    input[type="text"] { width: 100%; padding: 12px; font-size: 15px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; outline: none; }
+    #epi-resultado { margin-top: 18px; }
+  </style>
 </head>
 <body>
-  <main class="wrap">
-    <h1>Anales de Salud Mental</h1>
-    <p>Buscador de publicaciones y estudios epidemiológicos.</p>
 
-    <section class="filters">
-      <input id="q" placeholder="Buscar título, región, ciudad o tema">
-      <select id="region">
-        <option value="">Todas las regiones</option>
-      </select>
-      <select id="anio">
-        <option value="">Todos los años</option>
-      </select>
-    </section>
+  <div class="container">
+    <h1>🔬 Consultante Epidemiológico INSM HD-HN</h1>
+    <p style="font-size:14px; color:#666;">Buscador y motor narrativo de indicadores de salud mental.</p>
 
-    <section id="stats" class="stats"></section>
+    <div style="margin-top: 15px;">
+      <input type="text" id="epi-consulta" placeholder="Ej: depresión en Cajamarca, ansiedad en Ayacucho..." autocomplete="off">
+    </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Título</th>
-          <th>Región</th>
-          <th>Año ejecución</th>
-          <th>Volumen</th>
-          <th>Fuente</th>
-        </tr>
-      </thead>
-      <tbody id="rows"></tbody>
-    </table>
-  </main>
-
-  <div style="padding:10px;background:#e9eef3;">
-    <a href="../index.html">🏠 Inicio</a> |
-    <a href="index.html">🔍 Buscador</a> |
-    <a href="analisis.html">📊 Análisis</a>
+    <div id="epi-resultado"></div>
   </div>
 
+  <!-- 1. BASE DE DATOS -->
   <script src="data.js"></script>
-  <script src="app.js"></script>
+
+  <!-- 2. MOTORES DE CÁLCULO Y FORMULAS DE TU ZIP -->
+  <script src="indicadores-basicos.js"></script>
+  <script src="indicadores-epidemiologicos.js"></script>
+  <script src="app/corpus-cientifico-2017.js"></script>
+
+  <!-- 3. MOTOR NARRATIVO Y LOGICA DE CONSULTA -->
+  <script src="motor-narrativo.js"></script>
+  <script src="core/consulta-epidemiologica.js"></script>
 </body>
 </html>
