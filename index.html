@@ -1,177 +1,170 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Anales de Salud Mental - Consultante Epidemiológico</title>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    .consultante-section {
-      background: #f0f8ff;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 8px;
-      border-left: 4px solid #007bff;
-    }
-    .consultante-section h2 {
-      margin-top: 0;
-      color: #0056b3;
-    }
-    .epi-input-group {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 15px;
-      flex-wrap: wrap;
-    }
-    #epi-consulta {
-      flex: 1;
-      min-width: 200px;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 1em;
-    }
-    #epi-buscar {
-      padding: 10px 20px;
-      background: #007bff;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    #epi-buscar:hover {
-      background: #0056b3;
-    }
-    #epi-respuesta {
-      margin-top: 15px;
-    }
-    .epi-resultado {
-      padding: 15px;
-      background: #ffffff;
-      border-left: 3px solid #007bff;
-      margin: 10px 0;
-      border-radius: 4px;
-    }
-    .epi-narrativa {
-      font-size: 1em;
-      line-height: 1.6;
-      color: #333;
-      font-style: italic;
-    }
-    .epi-instrucciones {
-      padding: 10px;
-      background: #e7f3ff;
-      border-radius: 4px;
-      color: #0056b3;
-      font-size: 0.95em;
-    }
-    .epi-detalles {
-      margin-top: 15px;
-      padding: 10px;
-      background: #f9f9f9;
-      border-radius: 4px;
-    }
-    .epi-detalles summary {
-      cursor: pointer;
-      font-weight: bold;
-      color: #007bff;
-    }
-    .epi-lista-estudios {
-      list-style: none;
-      padding-left: 0;
-      margin-top: 10px;
-    }
-    .epi-lista-estudios li {
-      padding: 10px;
-      background: white;
-      margin: 5px 0;
-      border-radius: 4px;
-      border-left: 2px solid #ddd;
-    }
-    .epi-lista-estudios li:hover {
-      background: #f0f8ff;
-      border-left-color: #007bff;
-    }
-    .epi-lista-estudios small {
-      display: block;
-      margin-top: 5px;
-      color: #666;
-    }
-    .epi-lista-estudios a {
-      color: #007bff;
-      text-decoration: none;
-    }
-    .epi-lista-estudios a:hover {
-      text-decoration: underline;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIP Research</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f4f7fa;
+margin:0;
+padding:0;
+text-align:center;
+}
+
+.hero{
+padding:60px 20px;
+background:#0b3d5c;
+color:white;
+}
+
+.hero h1{
+font-size:2.2rem;
+margin-bottom:10px;
+}
+
+.hero p{
+max-width:700px;
+margin:auto;
+line-height:1.6;
+}
+
+.stats{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+padding:30px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 2px 8px rgba(0,0,0,.1);
+min-width:180px;
+}
+
+.card h2{
+margin:0;
+color:#0b3d5c;
+}
+
+.btn{
+display:inline-block;
+margin-top:20px;
+padding:15px 30px;
+background:#0b3d5c;
+color:white;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+}
+
+footer{
+padding:20px;
+color:#666;
+}
+
+.copyright{
+padding:12px;
+color:#888;
+font-size:0.8rem;
+background:#eef2f5;
+}
+</style>
 </head>
+
 <body>
-  <main class="wrap">
-    <h1>Anales de Salud Mental</h1>
-    <p>Buscador de publicaciones y estudios epidemiológicos.</p>
 
-    <!-- CONSULTANTE EPIDEMIOLÓGICO v2 -->
-    <section class="consultante-section">
-      <h2>🔬 Consultante Epidemiológico</h2>
-      <p>Consulta narrativas automáticas basadas en estudios de salud mental en Perú.</p>
-      
-      <div class="epi-input-group">
-        <input 
-          id="epi-consulta" 
-          type="text" 
-          placeholder="Ej: 'depresión en Lima', 'ansiedad Ayacucho', 'comparar Lima vs Cusco'"
-          autofocus>
-        <button id="epi-buscar">🔍 Consultar</button>
-      </div>
+<section class="hero">
+<h1>SIP Research</h1>
 
-      <div id="epi-respuesta"></div>
-    </section>
+<p>
+Plataforma de Investigación en Salud Mental y Epidemiología.
+Repositorio especializado en estudios epidemiológicos,
+publicaciones científicas y análisis de salud mental del Perú.
+</p>
 
-    <!-- BUSCADOR CLÁSICO -->
-    <hr>
-    <h2>📋 Buscador de Estudios</h2>
+<a class="btn" href="app/">
+Ingresar al Buscador
+</a>
+<br><br>
 
-    <section class="filters">
-      <input id="q" placeholder="Buscar título, región, ciudad o tema">
-      <select id="region">
-        <option value="">Todas las regiones</option>
-      </select>
-      <select id="anio">
-        <option value="">Todos los años</option>
-      </select>
-    </section>
+<a class="btn" href="app/analisis.html">
+📊 Análisis Epidemiológico
+</a>
+</section>
 
-    <section id="stats" class="stats"></section>
+<section class="stats">
 
-    <table>
-      <thead>
-        <tr>
-          <th>Título</th>
-          <th>Región</th>
-          <th>Año ejecución</th>
-          <th>Volumen</th>
-          <th>Fuente</th>
-        </tr>
-      </thead>
-      <tbody id="rows"></tbody>
-    </table>
-  </main>
+<div class="card">
+<h2 id="stat-estudios">-</h2>
+<p>📚 Estudios</p>
+</div>
 
-  <div style="padding:10px;background:#e9eef3;">
-    <a href="../index.html">🏠 Inicio</a> |
-    <a href="index.html">🔍 Buscador</a> |
-    <a href="analisis.html">📊 Análisis</a>
-  </div>
+<div class="card">
+<h2 id="stat-regiones">-</h2>
+<p>🗺️ Regiones</p>
+</div>
 
-  <!-- SCRIPTS EN ORDEN CORRECTO -->
-  <script src="data.js"></script>
-  <script src="app.js"></script>
-  <script src="motor-epidemiologico.js"></script>
-  <!-- NUEVOS SCRIPTS AGREGADOS -->
-  <script src="indicadores-basicos.js"></script>
-  <script src="motor-narrativo.js"></script>
-  <script src="core/consulta-epidemiologica.js"></script>
+<div class="card">
+<h2 id="stat-cobertura">-</h2>
+<p>📅 Cobertura</p>
+</div>
+
+<div class="card">
+<h2>1.0</h2>
+<p>🚀 SIP Research</p>
+</div>
+
+<div class="card">
+<h2>INSM</h2>
+<p>Fuente Principal</p>
+</div>
+
+<div class="card">
+<h2 id="stat-temas">-</h2>
+<p>🏷️ Temas</p>
+</div>
+
+</section>
+
+<div style="padding:10px;background:#e9eef3;">
+<a href="index.html">🏠 Inicio</a> |
+<a href="app/">🔍 Buscador</a> |
+<a href="app/analisis.html">📊 Análisis</a>
+</div>
+
+<footer>
+SIP Research • Salud Mental • Epidemiología • Investigación
+</footer>
+
+<div class="copyright">
+© 2026 SIP · System Intelligence Platform. Todos los derechos reservados.
+</div>
+
+<script src="app/data.js"></script>
+<script>
+// Estas tarjetas ya NO están escritas a mano: se calculan desde
+// app/data.js para que nunca queden desactualizadas cuando agregues
+// o quites estudios.
+(function () {
+  if (typeof data === "undefined") return;
+
+  const anios = data.map(d => d.anio_pub).filter(Boolean);
+  const regiones = new Set(data.map(d => d.region).filter(Boolean));
+  const temas = new Set(data.map(d => d.tema).filter(Boolean));
+
+  document.getElementById("stat-estudios").textContent = data.length;
+  document.getElementById("stat-regiones").textContent = regiones.size;
+  document.getElementById("stat-temas").textContent = temas.size;
+  document.getElementById("stat-cobertura").textContent =
+    anios.length ? `${Math.min(...anios)}-${Math.max(...anios)}` : "-";
+})();
+</script>
+
 </body>
 </html>
