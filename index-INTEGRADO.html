@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anales de Salud Mental - Consultante Epidemiológico</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #ffffff;
+    }
+
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #0056b3;
+      margin-bottom: 10px;
+      font-size: 2em;
+    }
+
+    h2 {
+      color: #0056b3;
+      margin: 30px 0 15px;
+      font-size: 1.5em;
+    }
+
+    p {
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    hr {
+      margin: 30px 0;
+      border: none;
+      border-top: 1px solid #ddd;
+    }
+
+    /* CONSULTANTE SECTION */
+    .consultante-section {
+      background: linear-gradient(135deg, #f0f8ff 0%, #e7f3ff 100%);
+      padding: 25px;
+      margin: 20px 0;
+      border-radius: 8px;
+      border-left: 4px solid #007bff;
+      box-shadow: 0 2px 4px rgba(0, 86, 179, 0.1);
+    }
+
+    .consultante-section h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .consultante-section > p {
+      margin-bottom: 15px;
+    }
+
+    /* SELECTS */
+    .epi-selects {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .epi-selects label {
+      font-weight: bold;
+      color: #0056b3;
+      font-size: 0.95em;
+    }
+
+    .epi-selects select {
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1em;
+      background: white;
+      cursor: pointer;
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .epi-selects select:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    }
+
+    #epi-consultar {
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1em;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+
+    #epi-consultar:hover {
+      background: #0056b3;
+    }
+
+    #epi-consultar:active {
+      transform: scale(0.98);
+    }
+
+    /* RESPUESTA */
+    #epi-respuesta {
+      margin-top: 15px;
+    }
+
+    .epi-resultado {
+      padding: 15px;
+      background: white;
+      border-left: 3px solid #007bff;
+      margin: 10px 0;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .epi-narrativa {
+      font-style: italic;
+      line-height: 1.7;
+      margin-bottom: 10px;
+      color: #333;
+      font-size: 0.95em;
+    }
+
+    .epi-instrucciones {
+      padding: 10px;
+      background: #e7f3ff;
+      border-radius: 4px;
+      color: #0056b3;
+      font-size: 0.95em;
+      margin: 0;
+    }
+
+    .epi-detalles {
+      margin-top: 15px;
+      padding: 10px;
+      background: #f9f9f9;
+      border-radius: 4px;
+    }
+
+    .epi-detalles summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: #007bff;
+      user-select: none;
+      padding: 5px;
+    }
+
+    .epi-detalles summary:hover {
+      text-decoration: underline;
+    }
+
+    .epi-lista {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 10px;
+    }
+
+    .epi-lista li {
+      padding: 10px;
+      background: white;
+      margin: 5px 0;
+      border-radius: 4px;
+      border-left: 2px solid #ddd;
+      transition: all 0.2s;
+    }
+
+    .epi-lista li:hover {
+      background: #f0f8ff;
+      border-left-color: #007bff;
+    }
+
+    .epi-lista small {
+      display: block;
+      margin-top: 5px;
+      color: #666;
+      font-size: 0.9em;
+    }
+
+    .epi-lista a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .epi-lista a:hover {
+      text-decoration: underline;
+    }
+
+    /* BUSCADOR CLÁSICO */
+    .filters {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .filters input,
+    .filters select {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1em;
+      font-family: inherit;
+    }
+
+    .filters input {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .filters input:focus,
+    .filters select:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    }
+
+    /* TABLA */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table thead {
+      background: #f5f5f5;
+      font-weight: bold;
+    }
+
+    table th,
+    table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      font-size: 0.95em;
+    }
+
+    table tbody tr:hover {
+      background: #f9f9f9;
+    }
+
+    #stats {
+      padding: 15px;
+      background: #e9eef3;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      font-size: 0.95em;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 15px;
+      background: #e9eef3;
+      text-align: center;
+      font-size: 0.9em;
+      margin-top: 30px;
+      border-radius: 4px;
+    }
+
+    footer a {
+      color: #007bff;
+      text-decoration: none;
+      margin: 0 15px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width: 600px) {
+      .wrap { padding: 15px; }
+      h1 { font-size: 1.5em; }
+      h2 { font-size: 1.2em; }
+      .epi-selects { flex-direction: column; }
+      .epi-selects select { width: 100%; }
+      #epi-consultar { width: 100%; }
+      table th, table td { padding: 8px; font-size: 0.85em; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <!-- TÍTULO -->
+    <h1>Anales de Salud Mental</h1>
+    <p>Buscador de publicaciones y estudios epidemiológicos del INSM.</p>
+
+    <!-- CONSULTANTE EPIDEMIOLÓGICO -->
+    <section class="consultante-section">
+      <h2>🔬 Consultante Epidemiológico</h2>
+      <p>Consulta narrativas automáticas basadas en estudios de salud mental en Perú.</p>
+      
+      <div class="epi-selects">
+        <label for="epi-region">Región:</label>
+        <select id="epi-region">
+          <option value="">Selecciona región...</option>
+        </select>
+
+        <label for="epi-trastorno">Trastorno:</label>
+        <select id="epi-trastorno">
+          <option value="">Selecciona trastorno...</option>
+        </select>
+
+        <button id="epi-consultar">Consultar</button>
+      </div>
+
+      <div id="epi-respuesta"></div>
+    </section>
+
+    <!-- SEPARADOR -->
+    <hr>
+
+    <!-- BUSCADOR CLÁSICO -->
+    <h2>📋 Buscador de Estudios</h2>
+
+    <section class="filters">
+      <input id="q" placeholder="Buscar título, región, ciudad o tema">
+      <select id="region">
+        <option value="">Todas las regiones</option>
+      </select>
+      <select id="anio">
+        <option value="">Todos los años</option>
+      </select>
+    </section>
+
+    <section id="stats" class="stats"></section>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Región</th>
+          <th>Año</th>
+          <th>Vol</th>
+          <th>Fuente</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="../index.html">🏠 Inicio</a>
+    <a href="index.html">🔍 Buscador</a>
+    <a href="analisis.html">📊 Análisis</a>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script src="consultante-epidemiologico-COMPLETO.js"></script>
+</body>
+</html>
