@@ -1,68 +1,219 @@
-(function() {
-  "use strict";
+// ============================================
+// CONSULTANTE EPIDEMIOLÓGICO v2.2
+// CORREGIDO: integración mejorada con motor-narrativo
+// Autor: Claude | Licencia: MIT
+// ============================================
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const inputConsulta = document.getElementById("epi-consulta");
-    const contenedorRespuesta = document.getElementById("epi-resultado") || document.getElementById("epi-respuesta");
+(function(){
+"use strict";
 
-    if (!inputConsulta) return;
+// Accede a data.js
+const obtenerDatos = () => {
+  if (typeof window.data !== "undefined" && Array.isArray(window.data)) {
+    return window.data;
+  }
+  console.warn("data.js no está cargado correctamente");
+  return [];
+};
 
-    const baseDatos = [
-      ...(window.ESTUDIOS_EPIDEMIOLOGICOS || []),
-      ...(window.CORPUS_CIENTIFICO_2017 || [])
-    ];
+// Identifica región desde consulta
+function identificarRegion(q) {
+  const regiones = ["lima", "ayacucho", "cusco", "huancayo", "sierra", "costa", "selva", "arequipa", "moquegua", "puno", "chiclayo", "callao", "iquitos", "pucallpa", "tacna", "tumbes", "trujillo", "abancay", "huancavelica"];
+  const qNorm = String(q || "").toLowerCase();
+  return regiones.find(r => qNorm.includes(r)) || "";
+}
 
-    if (typeof window.MotorNarrativo === "undefined") {
-      if (contenedorRespuesta) {
-        contenedorRespuesta.innerHTML = `<div style="color:#b91c1c; font-size:13px; padding:10px; background:#fee2e2; border-radius:6px;">Error de sistema: motor-narrativo.js no se encuentra disponible.</div>`;
+// Identifica trastorno desde consulta
+function identificarTrastorno(q) {
+  const qNorm = String(q || "").toLowerCase();
+  if (qNorm.includes("depres")) return "depresión";
+  if (qNorm.includes("ansiedad")) return "ansiedad";
+  if (qNorm.includes("sustancia") || qNorm.includes("alcohol")) return "sustancia";
+  if (qNorm.includes("suicid") || qNorm.includes("conducta")) return "conducta suicida";
+  if (qNorm.includes("tdah") || qNorm.includes("déficit")) return "TDAH";
+  if (qNorm.includes("psiquiátr") || qNorm.includes("trastorno mental")) return "trastorno mental";
+  return "";
+}
+
+// Identifica tipo de consulta
+function identificarTipo(q) {
+  const qNorm = String(q || "").toLowerCase();
+  if (qNorm.includes("vs") || qNorm.includes("versus") || qNorm.includes("comparar")) return "comparacion";
+  if (qNorm.includes("tendencia") || qNorm.includes("cambio") || qNorm.includes("evolución")) return "tendencia";
+  return "general";
+}
+
+// Extrae dos regiones para comparación
+function extraerVariasRegiones(q) {
+  const regiones = ["lima", "ayacucho", "cusco", "huancayo", "sierra", "costa", "selva", "arequipa", "moquegua", "puno", "chiclayo"];
+  const qNorm = String(q || "").toLowerCase();
+  return regiones.filter(r => qNorm.includes(r));
+}
+
+// CONSULTA PRINCIPAL
+function consultar(texto) {
+  if (!texto || texto.trim() === "") {
+    return {
+      narrativa: "Escribe una consulta (ej: 'depresión en Lima' o 'ansiedad Ayacucho').",
+      estudios: [],
+      tipo: "vacio"
+    };
+  }
+
+  const region = identificarRegion(texto);
+  const trastorno = identificarTrastorno(texto);
+  const tipo = identificarTipo(texto);
+
+  if (!region || !trastorno) {
+    return {
+      narrativa: `Por favor especifica región y trastorno. Ejemplo: "depresión en Lima", "ansiedad en Ayacucho".`,
+      estudios: [],
+      tipo: "incompleto"
+    };
+  }
+
+  const datos = obtenerDatos();
+  if (datos.length === 0) {
+    return {
+      narrativa: "⚠️ Error: No se encuentran datos. Verifica que data.js esté cargado.",
+      estudios: [],
+      tipo: "error"
+    };
+  }
+
+  // Usa MotorNarrativo si existe
+  if (typeof MotorNarrativo === "undefined") {
+    return {
+      narrativa: "⚠️ Error: motor-narrativo.js no cargó. Verifica el orden de scripts.",
+      estudios: [],
+      tipo: "error"
+    };
+  }
+
+  const motor = new MotorNarrativo(datos);
+  let resultado = {};
+
+  try {
+    if (tipo === "comparacion") {
+      const regiones = extraerVariasRegiones(texto);
+      if (regiones.length >= 2) {
+        resultado.narrativa = motor.compararRegiones(regiones[0], regiones[1], trastorno);
+        resultado.tipo = "comparacion";
+      } else {
+        resultado.narrativa = `Para comparar, especifica dos regiones (ej: "depresión Lima vs Ayacucho").`;
+        resultado.tipo = "error";
       }
-      return;
+    } else if (tipo === "tendencia") {
+      resultado.narrativa = motor.analizarTendencia(region, trastorno);
+      resultado.tipo = "tendencia";
+    } else {
+      resultado.narrativa = motor.generarNarrativa(region, trastorno);
+      resultado.tipo = "general";
     }
 
-    const motor = new window.MotorNarrativo(baseDatos);
+    resultado.estudios = motor.obtenerDetalles(region, trastorno);
+  } catch (error) {
+    console.error("Error en consultante:", error);
+    resultado.narrativa = `❌ Error al procesar consulta: ${error.message}`;
+    resultado.estudios = [];
+    resultado.tipo = "error";
+  }
 
-    const ejecutarConsulta = () => {
-      const texto = inputConsulta.value.trim();
-      if (texto.length < 2) {
-        if (contenedorRespuesta) contenedorRespuesta.innerHTML = "";
-        return;
-      }
+  return resultado;
+}
 
-      let region = "";
-      let trastorno = texto;
+// RENDERIZA RESULTADO EN DOM
+function render(resultado, nodo) {
+  if (!nodo || !resultado.narrativa) return;
 
-      if (texto.toLowerCase().includes(" en ")) {
-        const partes = texto.split(/ en /i);
-        trastorno = partes[0].trim();
-        region = partes[1].trim();
-      }
+  const esc = v => String(v || "").replace(/[&<>"']/g, c => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  }[c]));
 
-      const narrativa = motor.generarNarrativa(region, trastorno);
-      const detalles = motor.obtenerDetalles(region, trastorno);
+  let html = `<article class="epi-resultado">`;
 
-      if (contenedorRespuesta) {
-        let htmlDetalles = "";
-        if (detalles.length > 0) {
-          htmlDetalles = `
-            <details style="margin-top:10px; cursor:pointer;" open>
-              <summary style="font-weight:600; color:#1d4ed8;">📚 Fuentes epidemiológicas identificadas (${detalles.length})</summary>
-              <ul style="padding-left:18px; margin-top:8px; font-size:13px;">
-          `;
-          detalles.forEach(d => {
-            htmlDetalles += `<li style="margin-bottom:4px;"><strong>${d.titulo}</strong> — ${d.region} (${d.anio}) · Prevalencia: <strong>${d.prevalencia}%</strong></li>`;
-          });
-          htmlDetalles += `</ul></details>`;
-        }
+  // Narrativa principal
+  html += `<p class="epi-narrativa">${esc(resultado.narrativa)}</p>`;
 
-        contenedorRespuesta.innerHTML = `
-          <div style="padding:14px; background:#f9fafb; border:1px solid #e5e7eb; border-radius:8px;">
-            <p style="margin:0 0 8px 0; font-size:14px; line-height:1.5;">${narrativa}</p>
-            ${htmlDetalles}
-          </div>
-        `;
-      }
-    };
+  // Detalles de estudios si hay
+  if (resultado.estudios && resultado.estudios.length > 0) {
+    html += `<details class="epi-detalles">
+      <summary>📚 Estudios encontrados (${resultado.estudios.length})</summary>
+      <ul class="epi-lista-estudios">`;
 
-    inputConsulta.addEventListener("input", ejecutarConsulta);
+    resultado.estudios.forEach(e => {
+      html += `<li>
+        <strong>${esc(e.titulo)}</strong><br/>
+        <small>
+          <strong>${esc(e.region || "")}</strong> · 
+          ${esc(e.ciudad || "")} · 
+          ${e.anio || "s/f"} · 
+          Prevalencia: <strong>${e.prevalencia || "N/A"}%</strong>
+          ${e.url ? ` · <a href="${esc(e.url)}" target="_blank" rel="noopener">Ver fuente</a>` : ''}
+        </small>
+      </li>`;
+    });
+
+    html += `</ul></details>`;
+  }
+
+  html += `</article>`;
+  nodo.innerHTML = html;
+}
+
+// INICIALIZACIÓN
+function init() {
+  const input = document.getElementById("epi-consulta");
+  const btn = document.getElementById("epi-buscar");
+  const output = document.getElementById("epi-respuesta");
+
+  if (!input || !btn || !output) {
+    console.warn("No se encuentran elementos del consultante en el DOM");
+    return;
+  }
+
+  const ejecutar = () => {
+    const resultado = consultar(input.value);
+    render(resultado, output);
+  };
+
+  btn.addEventListener("click", ejecutar);
+  input.addEventListener("keydown", e => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      ejecutar();
+    }
   });
+
+  // Muestra instrucciones iniciales
+  output.innerHTML = `
+    <p class="epi-instrucciones">
+      <strong>🔬 Consultante Epidemiológico</strong><br/>
+      <strong>Ejemplos de búsqueda:</strong><br/>
+      • "depresión en Lima"<br/>
+      • "ansiedad Ayacucho"<br/>
+      • "depresión Lima vs Cusco"<br/>
+      • "tendencia depresión Lima"
+    </p>
+  `;
+}
+
+// Exporta funciones públicas
+window.SIPEpidemiologia = {
+  consultar,
+  render,
+  init
+};
+
+// Inicia cuando el DOM esté listo
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", init);
+} else {
+  init();
+}
+
 })();
