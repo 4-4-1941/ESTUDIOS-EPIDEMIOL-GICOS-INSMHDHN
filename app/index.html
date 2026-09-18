@@ -3,39 +3,260 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Consultante Epidemiológico - INSM HD-HN</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>SIP Research - Consultante Epidemiológico</title>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f4f7f6; margin: 0; padding: 20px; color: #333; }
-    .container { max-width: 750px; margin: 0 auto; background: #fff; padding: 24px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e1e8ed; }
-    h1 { font-size: 22px; color: #0056b3; margin-top: 0; }
-    input[type="text"] { width: 100%; padding: 12px; font-size: 15px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; outline: none; }
-    #epi-resultado { margin-top: 18px; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f4f7f6;
+      color: #333;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    
+    .nav {
+      padding: 15px;
+      background: #e9eef3;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .nav a {
+      color: #0b3d5c;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+    .nav a:hover { text-decoration: underline; }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      border: 1px solid #e1e8ed;
+    }
+    
+    h1 { font-size: 24px; color: #0056b3; margin-bottom: 8px; margin-top: 0; }
+    h2 { font-size: 18px; color: #0b3d5c; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #e1e8ed; padding-bottom: 10px; }
+    
+    .section { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #e1e8ed; }
+    .section:last-child { border-bottom: none; }
+    
+    /* Consultante */
+    .epi-panel {
+      background: #f9fafc;
+      padding: 20px;
+      border-left: 4px solid #0056b3;
+      border-radius: 6px;
+      margin-bottom: 15px;
+    }
+    
+    .epi-query {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .epi-query input {
+      flex: 1;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+      outline: none;
+    }
+    
+    .epi-query input:focus { border-color: #0056b3; box-shadow: 0 0 4px rgba(0,86,179,0.2); }
+    
+    .epi-query button {
+      padding: 12px 24px;
+      border: 0;
+      border-radius: 6px;
+      background: #0056b3;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .epi-query button:hover { background: #003d82; }
+    
+    #epi-respuesta {
+      margin-top: 20px;
+    }
+    
+    .epi-resultado, .epi-instrucciones {
+      background: white;
+      padding: 15px;
+      border-radius: 6px;
+      border-left: 4px solid #2d7a47;
+    }
+    
+    .epi-instrucciones { border-left-color: #0056b3; }
+    
+    /* Buscador */
+    .search-controls {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .search-controls input,
+    .search-controls select {
+      padding: 10px;
+      border: 1px solid #bbb;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    
+    .search-controls input {
+      flex: 1;
+      min-width: 200px;
+    }
+    
+    .search-controls select {
+      min-width: 150px;
+    }
+    
+    #stats {
+      font-weight: bold;
+      color: #0056b3;
+      margin-bottom: 15px;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    
+    table thead {
+      background: #f0f4f8;
+      font-weight: bold;
+    }
+    
+    table th, table td {
+      padding: 12px;
+      border-bottom: 1px solid #e1e8ed;
+      text-align: left;
+    }
+    
+    table tr:hover {
+      background: #f9fafc;
+    }
+    
+    table a {
+      color: #0056b3;
+      text-decoration: none;
+    }
+    
+    table a:hover {
+      text-decoration: underline;
+    }
+    
+    .no-data {
+      padding: 30px;
+      text-align: center;
+      color: #666;
+      font-size: 15px;
+    }
+    
+    @media (max-width: 700px) {
+      .container { padding: 15px; }
+      .search-controls { flex-direction: column; }
+      .search-controls input, .search-controls select { width: 100%; }
+      .epi-query { flex-direction: column; }
+      .epi-query input, .epi-query button { width: 100%; }
+      table { font-size: 12px; }
+      table th, table td { padding: 8px; }
+    }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>🔬 Consultante Epidemiológico INSM HD-HN</h1>
-    <p style="font-size:14px; color:#666;">Buscador y motor narrativo de indicadores de salud mental.</p>
+<div class="nav">
+  <a href="../index.html">🏠 Inicio</a> |
+  <a href="index.html">🔍 Buscador</a> |
+  <a href="analisis.html">📊 Análisis</a>
+</div>
 
-    <div style="margin-top: 15px;">
-      <input type="text" id="epi-consulta" placeholder="Ej: depresión en Cajamarca, ansiedad en Ayacucho..." autocomplete="off">
+<div class="container">
+  <h1>🔬 Consultante Epidemiológico - INSM HD-HN</h1>
+  <p style="font-size:14px; color:#666; margin-bottom: 20px;">
+    Buscador y motor narrativo de indicadores de salud mental en el Perú.
+  </p>
+
+  <!-- ===== CONSULTANTE EPIDEMIOLÓGICO ===== -->
+  <div class="section">
+    <h2>Consultante Epidemiológico</h2>
+    <p>Consulta narrativas automáticas basadas en estudios de salud mental.</p>
+    
+    <div class="epi-panel">
+      <div class="epi-query">
+        <input type="text" id="epi-consulta" placeholder="Ej: depresión en Lima, ansiedad Ayacucho, violencia Chiclayo..." autocomplete="off">
+        <button id="epi-buscar" type="button">Consultar</button>
+      </div>
+      <div id="epi-respuesta" aria-live="polite"></div>
     </div>
-
-    <div id="epi-resultado"></div>
   </div>
 
-  <!-- 1. BASE DE DATOS -->
-  <script src="data.js"></script>
+  <!-- ===== BUSCADOR DE ESTUDIOS ===== -->
+  <div class="section">
+    <h2>Buscador de Estudios</h2>
+    <p>Busca y filtra estudios epidemiológicos en el corpus completo.</p>
+    
+    <div class="search-controls">
+      <input type="text" id="q" placeholder="Buscar por título, región, ciudad, tema..." autocomplete="off">
+      <select id="region">
+        <option value="">Todas las regiones</option>
+      </select>
+      <select id="anio">
+        <option value="">Todos los años</option>
+      </select>
+    </div>
+    
+    <div id="stats">0 resultados</div>
+    
+    <div style="overflow-x: auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Región</th>
+            <th>Año Ejecución</th>
+            <th>Volumen</th>
+            <th>Fuente</th>
+          </tr>
+        </thead>
+        <tbody id="rows">
+          <tr><td colspan="5" class="no-data">Cargando estudios...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
-  <!-- 2. MOTORES DE CÁLCULO Y FORMULAS DE TU ZIP -->
-  <script src="indicadores-basicos.js"></script>
-  <script src="indicadores-epidemiologicos.js"></script>
-  <script src="app/corpus-cientifico-2017.js"></script>
+<div class="nav">
+  <a href="../index.html">🏠 Inicio</a> |
+  <a href="index.html">🔍 Buscador</a> |
+  <a href="analisis.html">📊 Análisis</a>
+</div>
 
-  <!-- 3. MOTOR NARRATIVO Y LOGICA DE CONSULTA -->
-  <script src="motor-narrativo.js"></script>
-  <script src="core/consulta-epidemiologica.js"></script>
+<!-- ===== SCRIPTS EN ORDEN CORRECTO ===== -->
+<!-- 1. Datos -->
+<script src="data.js"></script>
+
+<!-- 2. Motor narrativo -->
+<script src="motor-narrativo.js"></script>
+
+<!-- 3. Inicialización buscador (app.js) -->
+<script src="app.js"></script>
+
+<!-- 4. Consultante epidemiológico -->
+<script src="core/consulta-epidemiologica.js"></script>
+
 </body>
 </html>
