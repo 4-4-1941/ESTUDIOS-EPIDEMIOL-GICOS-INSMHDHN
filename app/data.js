@@ -295,3 +295,5 @@ function anioEjecucion(estudio){
   const match = String(estudio.anio_estudio).match(/\d{4}/);
   return match ? parseInt(match[0], 10) : null;
   }
+window.data = data;
+window.anioEjecucion = anioEjecucion;
