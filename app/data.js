@@ -75,6 +75,8 @@ const data = [
   tema: "Epidemiología",
   url: "https://cdn.www.gob.pe/uploads/document/file/3660223/Estudio%20Epidemiol%C3%B3gico%20de%20Salud%20Mental%20en%20la%20Sierra%20Peruana%202003.pdf.pdf",
   fuente: "GOB.PE / INSM",
+  prevalencia: null,
+  prevalencia_definicion: null,
   resumen_breve: "Ficha institucional (informe completo en PDF) del estudio de la Sierra Peruana 2003, con foco en la ciudad de Ayacucho."
 },
 {
@@ -153,6 +155,8 @@ const data = [
   tema: "Metodología",
   url: "https://openjournal.insm.gob.pe/revistasm/asm/article/view/488",
   fuente: "Anales de Salud Mental",
+  prevalencia: null,
+  prevalencia_definicion: null,
   resumen_breve: "Artículo metodológico asociado a instrumentos de estudios epidemiológicos regionales."
 },
 {
@@ -168,6 +172,8 @@ const data = [
   tema: "Salud Mental Infantil",
   url: "https://www.gob.pe/institucion/insm/informes-publicaciones/3510277-estudio-epidemiologico-de-salud-mental-en-ninos-y-adolescentes-en-lima-metropolitana-en-el-contexto-de-la-covid-19-2020",
   fuente: "GOB.PE / INSM",
+  prevalencia: null,
+  prevalencia_definicion: null,
   resumen_breve: "Estudio en 2,639 niños y adolescentes de Lima Metropolitana, realizado en el contexto de la pandemia de COVID-19."
 },
 {
@@ -183,6 +189,8 @@ const data = [
   tema: "Marco Epidemiológico",
   url: "https://openjournal.insm.gob.pe/revistasm/asm/article/view/269",
   fuente: "Anales de Salud Mental",
+  prevalencia: null,
+  prevalencia_definicion: null,
   resumen_breve: "Artículo de revisión sobre la investigación epidemiológica en psiquiatría y salud mental en el Perú."
 },
 {
@@ -464,6 +472,3 @@ function obtenerRegiones(){
 function obtenerAnios(){
   return [...new Set(data.map(d => anioEjecucion(d)).filter(Boolean))].sort((a,b) => b-a);
 }
-window.data = data;
-window.anioEjecucion = anioEjecucion;      
-window.data = data;
